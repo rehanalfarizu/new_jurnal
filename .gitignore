@@ -216,3 +216,28 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Research data and generated artifacts
+data/raw/
+data/interim/
+data/processed/
+sensor_data.csv
+*.parquet
+*.feather
+*.joblib
+*.pkl
+
+# Generated experimental outputs are recreated by code.
+results/metrics/*.csv
+results/tables/*.csv
+results/figures/*.png
+results/figures/*.svg
+paper/figures/*.png
+paper/figures/*.svg
+paper/tables/*.csv
+
+# Local research configuration and credentials
+.env.*
+!.env.example
+mlruns/
+wandb/

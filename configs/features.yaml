@@ -1,0 +1,38 @@
+status: design_only
+
+groups:
+  historical_power:
+    - power_lags
+    - power_rolling_statistics
+  time:
+    - hour_of_day_cyclic
+    - day_of_week_cyclic
+    - is_weekend
+  environment:
+    - temperature_c
+    - humidity_percent
+  occupancy:
+    - occupancy_count
+    - occupancy_lags
+    - occupancy_rolling_statistics
+
+ablation_models:
+  persistence:
+    - current_power
+  historical_power_only:
+    - historical_power
+    - time
+  environment_without_occupancy:
+    - historical_power
+    - time
+    - environment
+  environment_with_occupancy:
+    - historical_power
+    - time
+    - environment
+    - occupancy
+
+leakage_rules:
+  use_only_features_available_at_prediction_time: true
+  rolling_windows_exclude_future_rows: true
+  fit_preprocessors_on_training_partition_only: true

@@ -1,0 +1,30 @@
+status: design_only
+random_seed: 42
+
+data:
+  raw_path: data/raw/sensor_data.csv
+  timestamp_column: Timestamp
+  source_timezone: UTC
+  source_timezone_evidence: supplied_research_brief
+  preserve_subsecond_precision: true
+  device_column: DeviceID
+
+forecast:
+  target_column: Daya (W)
+  horizon_minutes: 30
+  target_definition: first_observation_at_or_after_horizon_within_tolerance
+  target_match_tolerance_seconds: null
+
+evaluation:
+  split_strategy: chronological
+  train_end_utc: null
+  validation_end_utc: null
+  test_end_utc: null
+  metrics:
+    - mae
+    - rmse
+    - r2
+
+reporting:
+  results_are_generated: true
+  overwrite_raw_data: false

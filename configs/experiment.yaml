@@ -1,25 +1,80 @@
-status: design_only
+status: stage_3_forecasting_foundation
 random_seed: 42
 
 data:
   raw_path: data/raw/sensor_data.csv
   timestamp_column: Timestamp
   source_timezone: UTC
-  source_timezone_evidence: supplied_research_brief
+  source_timezone_evidence: verified_system_provenance_and_stage_1_audit
   preserve_subsecond_precision: true
   device_column: DeviceID
 
+canonical_state:
+  schema_version: 1.0.0-research
+  room_id: unresolved
+  staleness_seconds: null
+  validation_ranges:
+    temperature_c:
+      min: 0
+      max: 60
+      source: existing_gateway_validation_rule
+    humidity_percent:
+      min: 0
+      max: 100
+      source: existing_gateway_validation_rule
+    voltage_v:
+      min: 0
+      max: 300
+      source: existing_gateway_validation_rule
+    current_a:
+      min: 0
+      max: 50
+      source: existing_gateway_validation_rule
+    power_w:
+      min: 0
+      max: 5000
+      source: existing_gateway_validation_rule
+    occupancy_count:
+      min: 0
+      max: 100
+      source: existing_gateway_validation_rule
+
+preprocessing:
+  gap_threshold_seconds: 60
+  missing_policy: retain_and_flag
+  duplicate_policy: retain_and_report
+  outlier_policy: retain_and_flag
+  sort_order: timestamp_utc_ascending
+  timezone_policy: localize_naive_clock_value_as_utc
+
 forecast:
   target_column: Daya (W)
+  cadence_minutes: 1
   horizon_minutes: 30
-  target_definition: first_observation_at_or_after_horizon_within_tolerance
-  target_match_tolerance_seconds: null
+  target_definition: exact_power_at_t_plus_30_minutes_on_one_minute_grid
+  target_unit: W
+  aggregation:
+    temperature_c: mean
+    humidity_percent: mean
+    voltage_v: mean
+    current_a: mean
+    power_w: mean
+    occupancy_count: last_valid_observation_within_minute
+  gap_fill_policy: none
+  ridge_alphas:
+    - 0.1
+    - 1.0
+    - 10.0
+    - 100.0
+  model_selection_metric: validation_mae
 
 evaluation:
   split_strategy: chronological
-  train_end_utc: null
-  validation_end_utc: null
-  test_end_utc: null
+  train_fraction: 0.70
+  validation_fraction: 0.15
+  test_fraction: 0.15
+  boundary_policy: exclude_sample_if_target_crosses_split
+  common_sample_policy: same_usable_timestamps_for_all_baselines
   metrics:
     - mae
     - rmse

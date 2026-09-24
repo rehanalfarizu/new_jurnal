@@ -1,0 +1,19 @@
+metrik,nilai,satuan,keterangan
+nama_file,sensor_data.csv,,Nama file sumber; path lokal tidak dipublikasikan
+sha256,ca7831a188a191edbf82a673fac90dbb875b5095986ed07699c02530f2a02a0e,,Checksum file sumber
+jumlah_record,2027520,baris,Tidak termasuk header
+jumlah_kolom,8,kolom,Schema CSV yang divalidasi
+waktu_awal_utc,2026-02-23T23:14:43.896301Z,UTC,Minimum timestamp setelah interpretasi UTC
+waktu_akhir_utc,2026-05-24T01:22:06.727676Z,UTC,Maksimum timestamp setelah interpretasi UTC
+durasi_observasi_detik,7697242.831375,detik,Waktu akhir dikurangi waktu awal
+durasi_observasi_hari,89.0884586964699,hari,Durasi detik dibagi 86.400
+jumlah_device,1,device,DeviceID unik non-kosong
+jumlah_timestamp_valid,2027520,baris,Timestamp yang dapat diparse
+jumlah_timestamp_unik,2027520,timestamp,Setelah normalisasi UTC
+interval_minimum_detik,0.094946,detik,Interval berurutan setelah pengurutan
+interval_p25_detik,3.4654155,detik,Kuantil linear
+interval_median_detik,3.525192,detik,Kuantil linear
+interval_p75_detik,3.579087,detik,Kuantil linear
+interval_maksimum_detik,1747.161593,detik,Interval berurutan setelah pengurutan
+ambang_gap_detik,60,detik,Dari konfigurasi Tahap 2
+jumlah_gap,176,gap,Interval yang lebih besar dari ambang

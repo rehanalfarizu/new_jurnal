@@ -1,55 +1,84 @@
-# Experiment design before implementation
+# Desain eksperimen Tahap 3
 
-## Primary target
+## Modeling time series
 
-Predict power at `t + 30 minutes` from information available at or before `t`.
+Raw CSV hanya dibaca dan tidak diubah. Record diagregasikan ke grid UTC dengan cadence tepat satu menit:
 
-The source is irregularly sampled at roughly 3.5-second median intervals. A row shift is not a valid 30-minute target. Target construction must use timestamp matching. The exact match tolerance remains unset in `configs/experiment.yaml` until the gap distribution and operational sampling policy are reviewed.
+| Variabel | Agregasi per menit |
+| --- | --- |
+| Temperature | Mean |
+| Humidity | Mean |
+| Voltage | Mean |
+| Current | Mean |
+| Power | Mean |
+| Occupancy | Last valid observation dalam minute-bin |
 
-## Evaluation order
+Pipeline melakukan reindex dari minute-bin pertama sampai terakhir. Minute-bin tanpa telemetry tetap ada dengan nilai missing. Tidak ada forward-fill, interpolasi, atau penghapusan outlier.
 
-1. Verify raw file hash and schema.
-2. Parse timestamp text without modifying the raw column.
-3. Generate data-quality and gap reports.
-4. Define the canonical timeline and alignment policy.
-5. Construct future targets by timestamp.
-6. Define chronological train, validation, and test boundaries.
-7. Purge at least the forecast horizon around boundaries when required to prevent target overlap.
-8. Fit transformations on training data only.
-9. Evaluate baselines and comparable occupancy ablations.
-10. Generate metrics, predictions, plots, and an execution manifest.
-11. Run transparent decision-support scenarios using only verified forecasts and declared assumptions.
+## Target forecasting
 
-## Model comparisons
+Target utama adalah **30-minute-ahead power forecasting**:
 
-| Model | Features | Purpose |
-| --- | --- | --- |
-| Persistence | Current power | Mandatory naive baseline |
-| Historical power | Power history and time | Tests predictable temporal structure |
-| Environment without occupancy | Power history, time, temperature, humidity | Comparable non-occupancy model |
-| Environment with occupancy | Same features plus occupancy | Occupancy ablation treatment |
+```text
+target_power_30m(t) = power_w(t + 30 menit)
+```
 
-Use the same target rows, split boundaries, preprocessing, estimator family, and tuning budget for the two environmental models.
+Target dibuat setelah grid satu menit terbentuk, bukan melalui pergeseran 30 raw row. Unit target tetap Watt. Timestamp target disimpan secara eksplisit dan unit test memverifikasi selisih tepat 30 menit.
 
-## Metrics
+Sample dikeluarkan dari modeling apabila target `t+30` missing atau salah satu minute-bin pada horizon `t+1` sampai `t+30` tidak memiliki telemetry. Raw data dan baris grid tetap disimpan; hanya eligibility modeling yang berubah.
 
-Report MAE, RMSE, and R-squared on the held-out temporal test interval. Also retain row-level predictions and evaluate errors across occupancy levels and time periods when group sizes support it. Percentage improvement must name its baseline and denominator.
+## Feature set tanpa occupancy
 
-## Decision-support scope
+Baseline historical power menggunakan:
 
-The study may evaluate whether rules or ranked scenarios are traceable and internally consistent. Without accept/reject and measured-outcome data, label this a decision-support scenario evaluation. Do not claim validated human-in-the-loop performance, autonomous optimization, or observed energy savings.
+- current power pada t;
+- power lag 1, 5, 15, dan 30 menit;
+- rolling mean dan sample standard deviation power untuk window 5, 15, dan 30 menit;
+- representasi siklik waktu dalam hari dan hari dalam minggu; serta
+- indikator weekend.
 
-## Required tests
+Model non-occupancy multivariate menambahkan current-minute temperature, humidity, voltage, dan current. Rolling feature mencakup t dan waktu sebelumnya saja. Definisi offset sumber setiap feature tercatat pada `configs/features.yaml` dan `results/tables/feature_definition.csv`.
 
-- raw schema and column mapping;
-- timezone localization and sub-second preservation;
-- sorting, duplicate, gap, and outlier reporting;
-- no silent deletion;
-- time-based target matching;
-- no feature timestamp later than prediction time;
-- split boundaries and horizon purge;
-- training-only fitting of learned preprocessing;
-- metric calculations on fixed fixtures;
-- paired ablation rows and identical configurations;
-- canonical-state validity and missing-versus-zero handling;
-- deterministic results under the configured seed where the estimator supports it.
+Occupancy tidak digunakan sebagai feature atau untuk menentukan label pada Tahap 3.
+
+## Gap handling dan common sample
+
+Sebuah sample hanya usable jika:
+
+1. minute-bin t memiliki telemetry lengkap;
+2. seluruh lag dan rolling window tersedia;
+3. target power tepat pada t+30 tersedia;
+4. horizon t+1 sampai t+30 tidak melintasi bin kosong; dan
+5. state timestamp serta target timestamp berada pada split yang sama.
+
+Semua baseline dievaluasi pada common usable timestamps yang sama agar perbandingan berpasangan dan tidak dipengaruhi jumlah sample berbeda.
+
+## Chronological split
+
+Seluruh grid waktu dibagi berdasarkan urutan timestamp:
+
+- Train: 70% periode awal.
+- Validation: 15% periode berikutnya.
+- Test: 15% periode terakhir.
+
+Random split tidak digunakan. Target yang melintasi boundary train–validation atau validation–test dikeluarkan. Scaler di-fit hanya pada train. Candidate `alpha` Ridge dipilih berdasarkan MAE validation. Test tidak digunakan untuk pemilihan konfigurasi.
+
+## Baseline
+
+| Model | Definisi |
+| --- | --- |
+| Persistence | `prediction(t+30) = power(t)` |
+| Historical power Ridge | Historical power dan time features |
+| Non-occupancy multivariate Ridge | Historical power, time, temperature, humidity, voltage, dan current |
+
+Candidate `alpha` adalah 0,1; 1; 10; dan 100. Model sederhana digunakan agar pipeline mudah direproduksi dan hasil baseline dapat diaudit. Deep learning tidak digunakan.
+
+## Evaluasi
+
+MAE, RMSE, dan R² dihitung pada validation serta test. Validation digunakan untuk pemilihan `alpha` dan pemilihan model yang ditampilkan pada figure. Seluruh baseline tetap dilaporkan pada test menggunakan konfigurasi yang telah dipilih tanpa melihat test.
+
+Metrik MAE dan RMSE menggunakan unit Watt. R² tidak memiliki unit.
+
+## Batas klaim
+
+Tahap 3 belum mengevaluasi occupancy ablation, synchronization latency, energy saving, decision-support outcome, atau novelty. Hasil juga belum menunjukkan generalisasi lintas ruang, perangkat, musim, maupun kondisi operasional lain.

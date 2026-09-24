@@ -1,0 +1,8 @@
+reason,sample_count,proportion_of_minute_bins
+usable,121698,0.9486238103032996
+minute_bin_tanpa_telemetry,844,0.006578896086180421
+minute_bin_tidak_lengkap,0,0.0
+feature_window_tidak_lengkap,3017,0.02351721503792219
+target_t_plus_30_tidak_tersedia,846,0.006594485887332507
+forecast_horizon_melintasi_gap,1824,0.01421789865070271
+target_melintasi_split_boundary,60,0.00046769403456258917

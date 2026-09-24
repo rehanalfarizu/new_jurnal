@@ -1,0 +1,4 @@
+split,start_timestamp_utc,end_timestamp_utc,minute_bins,minute_bins_observed,usable_samples,boundary_excluded_samples
+train,2026-02-23T23:14:00Z,2026-04-27T07:55:00Z,89802,89802,85242,30
+validation,2026-04-27T07:56:00Z,2026-05-10T16:38:00Z,19243,19243,18330,30
+test,2026-05-10T16:39:00Z,2026-05-24T01:22:00Z,19244,19244,18126,0

@@ -1,0 +1,3 @@
+jenis,jumlah_baris_berlebih,jumlah_grup_duplikat,jumlah_unik,kebijakan
+exact_duplicate,0,0,2027520,dipertahankan_dan_dilaporkan
+duplicate_timestamp_utc,0,0,2027520,dipertahankan_dan_dilaporkan

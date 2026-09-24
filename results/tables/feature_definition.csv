@@ -1,0 +1,21 @@
+feature,group,description,source_offset_min,source_offset_max,unit,used_by_historical_power_ridge,used_by_non_occupancy_multivariate_ridge,uses_occupancy
+power_w,historical_power,Mean power pada minute-bin t.,0,0,W,True,True,False
+power_lag_1m,historical_power,Power pada t-1 menit.,-1,-1,W,True,True,False
+power_lag_5m,historical_power,Power pada t-5 menit.,-5,-5,W,True,True,False
+power_lag_15m,historical_power,Power pada t-15 menit.,-15,-15,W,True,True,False
+power_lag_30m,historical_power,Power pada t-30 menit.,-30,-30,W,True,True,False
+power_rolling_mean_5m,historical_power,Mean power backward-looking dari t-4 sampai t.,-4,0,W,True,True,False
+power_rolling_std_5m,historical_power,Sample standard deviation power backward-looking dari t-4 sampai t.,-4,0,W,True,True,False
+power_rolling_mean_15m,historical_power,Mean power backward-looking dari t-14 sampai t.,-14,0,W,True,True,False
+power_rolling_std_15m,historical_power,Sample standard deviation power backward-looking dari t-14 sampai t.,-14,0,W,True,True,False
+power_rolling_mean_30m,historical_power,Mean power backward-looking dari t-29 sampai t.,-29,0,W,True,True,False
+power_rolling_std_30m,historical_power,Sample standard deviation power backward-looking dari t-29 sampai t.,-29,0,W,True,True,False
+hour_of_day_sin,time,Komponen sinus waktu dalam hari pada timestamp t.,0,0,dimensionless,True,True,False
+hour_of_day_cos,time,Komponen kosinus waktu dalam hari pada timestamp t.,0,0,dimensionless,True,True,False
+day_of_week_sin,time,Komponen sinus hari dalam minggu pada timestamp t.,0,0,dimensionless,True,True,False
+day_of_week_cos,time,Komponen kosinus hari dalam minggu pada timestamp t.,0,0,dimensionless,True,True,False
+is_weekend,time,Indikator Sabtu atau Minggu pada timestamp t.,0,0,boolean,True,True,False
+temperature_c,environment,Mean temperature pada minute-bin t.,0,0,°C,False,True,False
+humidity_percent,environment,Mean humidity pada minute-bin t.,0,0,%,False,True,False
+voltage_v,electrical,Mean voltage pada minute-bin t.,0,0,V,False,True,False
+current_a,electrical,Mean current pada minute-bin t.,0,0,A,False,True,False

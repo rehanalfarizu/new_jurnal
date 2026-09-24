@@ -1,0 +1,13 @@
+metric,value,unit,description
+raw_records,2027520,record,Jumlah record CSV sebelum agregasi
+cadence_minutes,1,menit,Cadence modeling tetap
+minute_bins_total,128289,bin,Seluruh grid dari waktu awal sampai akhir
+minute_bins_with_telemetry,127445,bin,Bin dengan minimal satu raw record
+minute_bins_complete,127445,bin,Enam variabel hasil agregasi tersedia
+minute_bins_missing,844,bin,Bin tanpa telemetry; tetap missing
+minute_bins_partial,0,bin,Bin memiliki telemetry tetapi tidak lengkap
+candidate_state_times,128289,sample,Seluruh minute-bin sebelum eligibility
+usable_modeling_samples,121698,sample,Common sample untuk seluruh baseline
+samples_not_used,6591,sample,"Tidak digunakan karena gap, feature window, target, atau boundary"
+forecast_horizon_minutes,30,menit,Target tepat pada t+30 minute-bin
+occupancy_used_as_feature,false,boolean,Occupancy ablation ditunda ke Tahap 4

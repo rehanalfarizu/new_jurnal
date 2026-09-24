@@ -1,0 +1,9 @@
+urutan,kolom_raw,tipe_raw,tipe_tervalidasi,field_canonical,unit
+1,Timestamp,string,datetime UTC,timestamp_utc,UTC
+2,DeviceID,string,string,device_id,identifier
+3,Suhu (C),string,float,environment.temperature_c,°C
+4,Kelembaban (%),string,float,environment.humidity_percent,%
+5,Tegangan (V),string,float,electrical.voltage_v,V
+6,Arus (A),string,float,electrical.current_a,A
+7,Daya (W),string,float,electrical.power_w,W
+8,Jumlah Orang,string,integer,occupancy.count,orang

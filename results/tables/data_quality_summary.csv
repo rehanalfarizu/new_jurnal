@@ -1,0 +1,18 @@
+metrik,nilai,keterangan
+jumlah_record,2027520,Jumlah record sumber
+record_valid,2027520,"Valid menurut pemeriksaan timestamp, identitas, tipe, dan range"
+record_memiliki_masalah_validasi,0,Record tidak dihapus
+malformed_width_rows,0,Jumlah field tidak sesuai schema
+missing_cells,0,Akumulasi sel kosong pada delapan kolom
+timestamp_parse_failures,0,Timestamp tidak dapat diparse
+timestamp_naive_dilokalisasi_utc,2027520,Nilai jam tidak diubah
+timestamp_aware_dikonversi_utc,0,Hanya berlaku bila suffix tersedia
+pasangan_tidak_monotonik,0,Perbandingan berurutan dalam file sumber
+exact_duplicate_rows,0,Baris berlebih identik secara eksak
+duplicate_timestamp_rows,0,Baris berlebih dengan timestamp UTC yang sama
+numeric_type_issues,0,Nilai numerik invalid/non-finite/non-integer
+out_of_range_values,0,Akumulasi pelanggaran batas konfigurasi
+iqr_outlier_values,188958,Indikator eksploratif; bukan error otomatis dan tidak dihapus
+temporal_gaps,176,Interval > 60 detik
+room_id_unresolved_rows,2027520,Room ID tidak tersedia pada CSV
+occupancy_staleness_calculable,false,Tidak ada timestamp kamera independen

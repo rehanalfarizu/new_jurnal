@@ -1,38 +1,62 @@
-status: design_only
+status: stage_3_forecasting_foundation
 
-groups:
-  historical_power:
-    - power_lags
-    - power_rolling_statistics
-  time:
-    - hour_of_day_cyclic
-    - day_of_week_cyclic
+cadence_minutes: 1
+target: target_power_30m
+target_horizon_minutes: 30
+
+model_feature_sets:
+  persistence:
+    - power_w
+  historical_power_ridge:
+    - power_w
+    - power_lag_1m
+    - power_lag_5m
+    - power_lag_15m
+    - power_lag_30m
+    - power_rolling_mean_5m
+    - power_rolling_std_5m
+    - power_rolling_mean_15m
+    - power_rolling_std_15m
+    - power_rolling_mean_30m
+    - power_rolling_std_30m
+    - hour_of_day_sin
+    - hour_of_day_cos
+    - day_of_week_sin
+    - day_of_week_cos
     - is_weekend
-  environment:
+  non_occupancy_multivariate_ridge:
+    - power_w
+    - power_lag_1m
+    - power_lag_5m
+    - power_lag_15m
+    - power_lag_30m
+    - power_rolling_mean_5m
+    - power_rolling_std_5m
+    - power_rolling_mean_15m
+    - power_rolling_std_15m
+    - power_rolling_mean_30m
+    - power_rolling_std_30m
+    - hour_of_day_sin
+    - hour_of_day_cos
+    - day_of_week_sin
+    - day_of_week_cos
+    - is_weekend
     - temperature_c
     - humidity_percent
-  occupancy:
-    - occupancy_count
-    - occupancy_lags
-    - occupancy_rolling_statistics
+    - voltage_v
+    - current_a
 
-ablation_models:
-  persistence:
-    - current_power
-  historical_power_only:
-    - historical_power
-    - time
-  environment_without_occupancy:
-    - historical_power
-    - time
-    - environment
-  environment_with_occupancy:
-    - historical_power
-    - time
-    - environment
-    - occupancy
+feature_semantics:
+  current_minute_allowed: true
+  rolling_direction: backward_only
+  maximum_power_lookback_minutes: 30
+  occupancy_used: false
+  missing_window_policy: exclude_sample
+  future_values_allowed: false
 
 leakage_rules:
   use_only_features_available_at_prediction_time: true
   rolling_windows_exclude_future_rows: true
-  fit_preprocessors_on_training_partition_only: true
+  target_must_remain_inside_assigned_split: true
+  fit_scalers_on_training_partition_only: true
+  random_split_allowed: false

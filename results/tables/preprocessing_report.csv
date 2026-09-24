@@ -1,0 +1,10 @@
+urutan,transformasi,record_sebelum,record_setelah,jumlah_terdampak,alasan,tindakan
+1,baca_data_mentah,2027520,2027520,0,Membaca CSV tanpa mengubah sumber,retain
+2,parse_timestamp,2027520,2027520,0,Memvalidasi timestamp; kegagalan tetap dilaporkan,retain_and_flag
+3,normalisasi_utc,2027520,2027520,2027520,Timestamp tanpa suffix diinterpretasikan sebagai UTC tanpa mengubah clock value,localize_only
+4,urut_kronologis,2027520,2027520,0,Urutan kronologis diverifikasi; transformasi output akan mengurutkan bila diperlukan,sort_if_needed
+5,validasi_tipe,2027520,2027520,0,Nilai invalid tidak diimputasi atau dihapus,retain_and_flag
+6,deteksi_missing,2027520,2027520,0,Missing dibedakan dari angka nol,retain_and_flag
+7,deteksi_duplikasi,2027520,2027520,0,Duplikasi tidak dihapus pada Tahap 2,retain_and_report
+8,deteksi_gap,2027520,2027520,176,Gap ditentukan dari ambang konfigurasi,retain_and_report
+9,validasi_range,2027520,2027520,0,Outlier operasional dipertahankan dan diberi flag,retain_and_flag

@@ -1,5 +1,19 @@
-# Test scope
+# Pengujian
 
-Tests will cover timestamp precision and UTC localization, schema validation, missing-versus-zero behavior, duplicate and gap reporting, target matching, leakage prevention, temporal splits, canonical-state quality, metric calculations, occupancy ablation parity, deterministic seeds, and decision-trace consistency.
+Empat belas unit test saat ini memverifikasi:
 
-Tests against the existing application belong in that application repository and are not duplicated here.
+- lokalisasi timestamp naive sebagai UTC tanpa pergeseran;
+- canonical twin state dan missing-versus-zero;
+- outlier dipertahankan dan diberi flag;
+- exact duplicate, missing value, gap, dan pengurutan preprocessing;
+- agregasi satu menit dan occupancy last valid observation;
+- minute-bin kosong tetap missing;
+- target tepat 30 menit berdasarkan timestamp grid;
+- horizon target yang melintasi gap tidak usable;
+- rolling feature tidak dipengaruhi future values;
+- metadata seluruh feature memiliki source offset maksimum non-future;
+- chronological ordering dan boundary split;
+- target tidak melintasi split boundary; serta
+- scaler hanya fit pada train.
+
+Jalankan dengan `python3 -m unittest discover -s tests -v`.

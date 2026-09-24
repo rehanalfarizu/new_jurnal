@@ -229,9 +229,12 @@ sensor_data.csv
 
 # Generated experimental outputs are recreated by code.
 results/metrics/*.csv
-results/tables/*.csv
 results/figures/*.png
 results/figures/*.svg
+!results/metrics/forecast_metrics.csv
+!results/metrics/test_predictions.csv
+!results/figures/forecast_actual_vs_predicted.png
+!results/figures/forecast_error_distribution.png
 paper/figures/*.png
 paper/figures/*.svg
 paper/tables/*.csv

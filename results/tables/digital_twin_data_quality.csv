@@ -1,0 +1,17 @@
+category,item,count,denominator,rate,status,interpretation
+expected_from_telemetry,timestamp_utc,2027520,2027520,1.0,complete,Masuk denominator required-field completeness
+expected_from_telemetry,device_id,2027520,2027520,1.0,complete,Masuk denominator required-field completeness
+expected_from_telemetry,environment.temperature_c,2027520,2027520,1.0,complete,Masuk denominator required-field completeness
+expected_from_telemetry,environment.humidity_percent,2027520,2027520,1.0,complete,Masuk denominator required-field completeness
+expected_from_telemetry,electrical.voltage_v,2027520,2027520,1.0,complete,Masuk denominator required-field completeness
+expected_from_telemetry,electrical.current_a,2027520,2027520,1.0,complete,Masuk denominator required-field completeness
+expected_from_telemetry,electrical.power_w,2027520,2027520,1.0,complete,Masuk denominator required-field completeness
+expected_from_telemetry,occupancy.count,2027520,2027520,1.0,complete,Masuk denominator required-field completeness
+metadata,room_id_resolved,0,2027520,0.0,unresolved_by_source,Tidak masuk denominator telemetry; CSV tidak menyediakan identitas ruang
+derived_quality,data_quality.valid_available,2027520,2027520,1.0,available,"Boolean diturunkan dari rule missing, timestamp, tipe, finite, integer, dan range"
+derived_quality,staleness_seconds_available,0,,,unavailable_by_design,Tidak dinilai sebagai incomplete karena timestamp kamera independen tidak tersedia
+validation_behavior,records_with_missing_required_field,0,2027520,0.0,pass,Missing dipertahankan sebagai null dan menghasilkan missing_* flag
+validation_behavior,records_with_invalid_type,0,2027520,0.0,pass,"Invalid numeric, non-finite, dan non-integer menghasilkan flag dan valid=false"
+validation_behavior,records_with_invalid_timestamp,0,2027520,0.0,pass,Timestamp invalid menjadi null dan valid=false
+validation_behavior,records_with_range_violation,0,2027520,0.0,pass,Nilai dipertahankan tetapi valid=false sesuai range konfigurasi
+limitation,occupancy_staleness_calculable,0,,,not_evaluable,Tidak ada timestamp kamera independen; staleness_seconds tetap null

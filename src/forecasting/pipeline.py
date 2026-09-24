@@ -76,7 +76,7 @@ def _power_profile(values: np.ndarray, source: str) -> dict[str, Any]:
     }
 
 
-def _fit_ridge_with_validation(
+def fit_ridge_with_validation(
     samples: pd.DataFrame,
     features: Sequence[str],
     alphas: Sequence[float],
@@ -314,7 +314,7 @@ def run_forecasting_foundation(
     audit_store: dict[str, dict[str, Any]] = {}
     tuning_rows: list[dict[str, Any]] = []
     for model_name, feature_names in MODEL_FEATURES.items():
-        audit, model_tuning, predictions = _fit_ridge_with_validation(
+        audit, model_tuning, predictions = fit_ridge_with_validation(
             usable, feature_names, ridge_alphas, model_name
         )
         audit_store[model_name] = audit

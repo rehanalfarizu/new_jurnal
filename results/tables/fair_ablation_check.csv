@@ -1,0 +1,7 @@
+check,passed,detail
+control_sample_timestamp_equals_treatment,True,121698 control dan 121698 treatment samples
+control_target_equals_treatment,True,Target dibandingkan setelah alignment timestamp
+control_split_equals_treatment,True,Label split dibandingkan setelah alignment timestamp
+model_family_equal,True,Ridge untuk control dan treatment
+tuning_budget_equal,True,"[0.1, 1.0, 10.0, 100.0]"
+preprocessing_policy_equal,True,"Satu resampling, target, gap policy, dan sample mask digunakan bersama"

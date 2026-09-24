@@ -81,4 +81,14 @@ Metrik MAE dan RMSE menggunakan unit Watt. R² tidak memiliki unit.
 
 ## Batas klaim
 
-Tahap 3 belum mengevaluasi occupancy ablation, synchronization latency, energy saving, decision-support outcome, atau novelty. Hasil juga belum menunjukkan generalisasi lintas ruang, perangkat, musim, maupun kondisi operasional lain.
+Tahap 3 sendiri tidak mengevaluasi occupancy ablation. Tahap 3 maupun Tahap 4 tidak mengevaluasi synchronization latency, energy saving, decision-support outcome, atau novelty. Hasil juga belum menunjukkan generalisasi lintas ruang, perangkat, musim, maupun kondisi operasional lain.
+
+## Occupancy ablation Tahap 4
+
+Control memakai 20 feature non-occupancy dari Tahap 3. Treatment memakai model family Ridge yang sama dan menambahkan 11 occupancy features: `occupancy_count`, `occupancy_lag_1m`, `occupancy_lag_5m`, `occupancy_lag_15m`, `occupancy_lag_30m`, `occupancy_rolling_mean_5m`, `occupancy_rolling_max_5m`, `occupancy_rolling_mean_15m`, `occupancy_rolling_max_15m`, `occupancy_rolling_mean_30m`, dan `occupancy_rolling_max_30m`. Semua occupancy features bersifat backward-looking.
+
+Control dan treatment memakai common timestamps, target, split, gap policy, scaler policy, candidate `alpha`, dan tuning metric yang sama. `delta_mae = MAE_treatment − MAE_control`; nilai negatif berarti treatment menurunkan error. `mae_improvement = MAE_control − MAE_treatment`; nilai positif berarti treatment menurunkan error. Percentage improvement MAE didefinisikan sebagai `(control − treatment) / control × 100%`.
+
+Ketidakpastian `mae_improvement` dihitung menggunakan moving-block bootstrap pada paired absolute-error difference `absolute_error_control − absolute_error_treatment`. Kolom interval diberi nama `mae_improvement_ci_lower_w` dan `mae_improvement_ci_upper_w`. Block berisi 1.440 sample berurutan, dengan 1.000 iterasi dan seed 42. Independent-row bootstrap tidak digunakan.
+
+Hasil hanya mengukur incremental predictive value. Latest available camera snapshot tidak membuktikan sinkronisasi occupancy secara presisi dan tidak mendukung klaim kausal.

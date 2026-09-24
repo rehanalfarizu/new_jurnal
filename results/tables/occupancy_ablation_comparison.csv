@@ -1,0 +1,3 @@
+model,role,feature_count,occupancy_feature_count,selected_alpha,validation_mae_w,validation_rmse_w,validation_r2,test_mae_w,test_rmse_w,test_r2,delta_mae_w_vs_control,delta_rmse_w_vs_control,delta_r2_vs_control,mae_improvement_w_vs_control,mae_percentage_improvement
+non_occupancy_multivariate_ridge,control,20,0,0.1,1.0748017022926186,1.7601478373812938,0.6143920889721102,1.0800989673662498,1.6208652205943326,0.6471604620985363,0.0,0.0,0.0,0.0,0.0
+occupancy_multivariate_ridge,treatment,31,11,10.0,1.0650408739921051,1.7433926818721488,0.6216984856978218,1.0693887584729078,1.600945021043651,0.6557798629802756,-0.010710208893341955,-0.019920199550681472,0.008619400881739292,0.010710208893341955,0.991595142383859

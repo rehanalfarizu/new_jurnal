@@ -1,0 +1,9 @@
+source_field,canonical_field,source_type,canonical_type,unit,transformation,validation_rule,value_preservation,evaluated_records,non_null_canonical_values,completeness_rate,value_mismatches,mapping_status
+Timestamp,timestamp_utc,string,ISO 8601 UTC string,UTC,Parse ISO 8601; timestamp tanpa suffix dilokalisasikan sebagai UTC tanpa mengubah clock value,"Wajib tersedia, dapat diparse, dan hasil canonical harus UTC",Instant dan presisi mikrodetik dipertahankan; format dinormalisasi ke T dan Z,2027520,2027520,1.0,0,pass
+DeviceID,device_id,string,string,identifier,Trim whitespace; tanpa pemetaan identitas baru,Wajib tersedia dan non-kosong,Isi identifier dipertahankan setelah trim whitespace,2027520,2027520,1.0,0,pass
+Suhu (C),environment.temperature_c,numeric string,float,°C,Parse float tanpa scaling atau konversi unit,Finite dan berada pada range konfigurasi,Nilai numerik dipertahankan,2027520,2027520,1.0,0,pass
+Kelembaban (%),environment.humidity_percent,numeric string,float,%,Parse float tanpa scaling atau konversi unit,Finite dan berada pada range konfigurasi,Nilai numerik dipertahankan,2027520,2027520,1.0,0,pass
+Tegangan (V),electrical.voltage_v,numeric string,float,V,Parse float tanpa scaling atau konversi unit,Finite dan berada pada range konfigurasi,Nilai numerik dipertahankan,2027520,2027520,1.0,0,pass
+Arus (A),electrical.current_a,numeric string,float,A,Parse float tanpa scaling atau konversi unit,Finite dan berada pada range konfigurasi,Nilai numerik dipertahankan,2027520,2027520,1.0,0,pass
+Daya (W),electrical.power_w,numeric string,float,W,Parse float tanpa scaling atau konversi unit,Finite dan berada pada range konfigurasi,Nilai numerik dipertahankan,2027520,2027520,1.0,0,pass
+Jumlah Orang,occupancy.count,numeric string,integer,orang,Parse numeric lalu validasi integer; tanpa scaling,Integer finite dan berada pada range konfigurasi,Nilai hitungan integer dipertahankan,2027520,2027520,1.0,0,pass

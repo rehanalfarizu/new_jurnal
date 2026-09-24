@@ -1,4 +1,4 @@
-status: stage_3_forecasting_foundation
+status: stage_4_occupancy_ablation
 
 cadence_minutes: 1
 target: target_power_30m
@@ -45,12 +45,45 @@ model_feature_sets:
     - humidity_percent
     - voltage_v
     - current_a
+  occupancy_multivariate_ridge:
+    - power_w
+    - power_lag_1m
+    - power_lag_5m
+    - power_lag_15m
+    - power_lag_30m
+    - power_rolling_mean_5m
+    - power_rolling_std_5m
+    - power_rolling_mean_15m
+    - power_rolling_std_15m
+    - power_rolling_mean_30m
+    - power_rolling_std_30m
+    - hour_of_day_sin
+    - hour_of_day_cos
+    - day_of_week_sin
+    - day_of_week_cos
+    - is_weekend
+    - temperature_c
+    - humidity_percent
+    - voltage_v
+    - current_a
+    - occupancy_count
+    - occupancy_lag_1m
+    - occupancy_lag_5m
+    - occupancy_lag_15m
+    - occupancy_lag_30m
+    - occupancy_rolling_mean_5m
+    - occupancy_rolling_max_5m
+    - occupancy_rolling_mean_15m
+    - occupancy_rolling_max_15m
+    - occupancy_rolling_mean_30m
+    - occupancy_rolling_max_30m
 
 feature_semantics:
   current_minute_allowed: true
   rolling_direction: backward_only
   maximum_power_lookback_minutes: 30
-  occupancy_used: false
+  occupancy_used_in_stage_3_control: false
+  occupancy_used_in_stage_4_treatment: true
   missing_window_policy: exclude_sample
   future_values_allowed: false
 

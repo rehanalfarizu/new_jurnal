@@ -27,6 +27,8 @@ MEASUREMENT_COLUMNS = [
 
 POWER_LAGS_MINUTES = (1, 5, 15, 30)
 POWER_ROLLING_WINDOWS_MINUTES = (5, 15, 30)
+OCCUPANCY_LAGS_MINUTES = (1, 5, 15, 30)
+OCCUPANCY_ROLLING_WINDOWS_MINUTES = (5, 15, 30)
 
 BASELINE2_FEATURES = [
     "power_w",
@@ -53,6 +55,22 @@ BASELINE3_FEATURES = BASELINE2_FEATURES + [
     "voltage_v",
     "current_a",
 ]
+
+OCCUPANCY_FEATURES = [
+    "occupancy_count",
+    "occupancy_lag_1m",
+    "occupancy_lag_5m",
+    "occupancy_lag_15m",
+    "occupancy_lag_30m",
+    "occupancy_rolling_mean_5m",
+    "occupancy_rolling_max_5m",
+    "occupancy_rolling_mean_15m",
+    "occupancy_rolling_max_15m",
+    "occupancy_rolling_mean_30m",
+    "occupancy_rolling_max_30m",
+]
+
+OCCUPANCY_TREATMENT_FEATURES = BASELINE3_FEATURES + OCCUPANCY_FEATURES
 
 FEATURE_DEFINITIONS: dict[str, dict[str, Any]] = {
     "power_w": {
@@ -154,6 +172,43 @@ FEATURE_DEFINITIONS: dict[str, dict[str, Any]] = {
         "source_offset_min": 0,
         "source_offset_max": 0,
         "unit": "A",
+    },
+    "occupancy_count": {
+        "group": "occupancy",
+        "description": "Last valid occupancy observation pada minute-bin t.",
+        "source_offset_min": 0,
+        "source_offset_max": 0,
+        "unit": "orang",
+    },
+    **{
+        f"occupancy_lag_{lag}m": {
+            "group": "occupancy",
+            "description": f"Occupancy pada t-{lag} menit.",
+            "source_offset_min": -lag,
+            "source_offset_max": -lag,
+            "unit": "orang",
+        }
+        for lag in OCCUPANCY_LAGS_MINUTES
+    },
+    **{
+        f"occupancy_rolling_mean_{window}m": {
+            "group": "occupancy",
+            "description": f"Mean occupancy backward-looking dari t-{window - 1} sampai t.",
+            "source_offset_min": -(window - 1),
+            "source_offset_max": 0,
+            "unit": "orang",
+        }
+        for window in OCCUPANCY_ROLLING_WINDOWS_MINUTES
+    },
+    **{
+        f"occupancy_rolling_max_{window}m": {
+            "group": "occupancy",
+            "description": f"Maximum occupancy backward-looking dari t-{window - 1} sampai t.",
+            "source_offset_min": -(window - 1),
+            "source_offset_max": 0,
+            "unit": "orang",
+        }
+        for window in OCCUPANCY_ROLLING_WINDOWS_MINUTES
     },
 }
 
@@ -303,6 +358,12 @@ def add_forecasting_features(frame: pd.DataFrame) -> pd.DataFrame:
         rolling = result["power_w"].rolling(window=window, min_periods=window)
         result[f"power_rolling_mean_{window}m"] = rolling.mean()
         result[f"power_rolling_std_{window}m"] = rolling.std(ddof=1)
+    for lag in OCCUPANCY_LAGS_MINUTES:
+        result[f"occupancy_lag_{lag}m"] = result["occupancy_count"].shift(lag)
+    for window in OCCUPANCY_ROLLING_WINDOWS_MINUTES:
+        rolling = result["occupancy_count"].rolling(window=window, min_periods=window)
+        result[f"occupancy_rolling_mean_{window}m"] = rolling.mean()
+        result[f"occupancy_rolling_max_{window}m"] = rolling.max()
 
     minute_of_day = result.index.hour * 60 + result.index.minute
     day_angle = 2 * np.pi * minute_of_day / (24 * 60)

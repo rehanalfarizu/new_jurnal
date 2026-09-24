@@ -60,4 +60,27 @@ CSV hanya menyediakan satu timestamp untuk record gabungan. Karena tidak terdapa
 
 ## Validasi dan pengujian
 
-Unit test mencakup lokalisasi UTC tanpa pergeseran, konversi timestamp yang memiliki offset, struktur raw-to-canonical, perbedaan missing dan occupancy nol, staleness null, serta flag outlier. Pipeline penuh juga memvalidasi setiap record menggunakan transformer yang sama.
+`validate_canonical_state_schema()` memeriksa keberadaan field top-level dan nested, tipe nullable yang diizinkan, UTC, finite numeric value, occupancy integer, struktur `data_quality`, dan provenance. Validasi schema dipisahkan dari validitas isi telemetry: record yang memiliki nilai sumber invalid tetap dapat direpresentasikan oleh schema dengan nilai `null` dan quality flag yang sesuai.
+
+Unit test mencakup lokalisasi UTC tanpa pergeseran, konversi timestamp dengan offset, raw-to-canonical valid, invalid timestamp, field wajib hilang, tipe numerik salah, perbedaan missing dan occupancy nol, range violation, preservasi nilai, determinisme, `room_id` unresolved, dan staleness null.
+
+## Evaluasi empiris Tahap 5
+
+Pipeline `src.twin_state.evaluation` menggunakan transformer yang sama terhadap seluruh dataset. Definisi metriknya adalah:
+
+- successful transformation: pemanggilan transformer selesai tanpa exception;
+- schema conformity: state hasil transformasi lolos validator struktur dan tipe;
+- required-field completeness: proporsi sel non-null untuk delapan field yang diharapkan dari telemetry;
+- data-type validity: record tidak memiliki flag invalid numeric, non-finite, atau non-integer;
+- timestamp validity: timestamp dapat diparse dan direpresentasikan sebagai UTC;
+- value preservation: nilai source yang dapat diparse sama dengan nilai canonical setelah transformasi terdokumentasi;
+- determinism: raw record yang sama dengan provenance yang sama menghasilkan dictionary canonical yang identik.
+
+`room_id` tidak dimasukkan ke denominator completeness telemetry karena metadata tersebut memang tidak tersedia pada CSV. `staleness_seconds` juga tidak diperlakukan sebagai missing telemetry; statusnya adalah `unavailable_by_design` sampai tersedia timestamp independen yang memadai.
+
+Hasil aktual dan denominator tersedia pada:
+
+- `results/tables/canonical_state_evaluation.csv`;
+- `results/tables/canonical_field_mapping.csv`;
+- `results/tables/digital_twin_data_quality.csv`;
+- `results/metrics/canonical_state_evaluation_manifest.json`.

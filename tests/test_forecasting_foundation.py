@@ -15,7 +15,7 @@ from src.features.time_series import (
     add_power_target,
     resample_sensor_csv,
 )
-from src.forecasting.pipeline import _fit_ridge_with_validation
+from src.forecasting.pipeline import fit_ridge_with_validation
 
 
 FIELDNAMES = [
@@ -140,7 +140,7 @@ class TemporalSplitTest(unittest.TestCase):
             samples[feature] = np.arange(20, dtype=float)
         samples["target_power_30m"] = np.arange(20, dtype=float) * 2
         samples["split"] = ["train"] * 10 + ["validation"] * 5 + ["test"] * 5
-        audit, _tuning, _predictions = _fit_ridge_with_validation(
+        audit, _tuning, _predictions = fit_ridge_with_validation(
             samples,
             BASELINE2_FEATURES,
             [1.0],

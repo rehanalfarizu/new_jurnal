@@ -49,6 +49,8 @@ Struktur CSV—satu `DeviceID` gateway dan kolom sensor serta occupancy pada rec
 
 Dengan demikian, occupancy pada setiap record harus dijelaskan sebagai **latest available camera snapshot**. Data saat ini tidak membuktikan nearest-timestamp synchronization. Occupancy staleness dan synchronization latency tidak dapat dihitung dan tidak boleh diklaim.
 
+Evaluasi Tahap 5 juga tidak mengubah keterbatasan tersebut. Dataset tidak menyediakan timestamp independen untuk `camera capture`, `sensor measurement`, `gateway arrival`, maupun `cloud ingestion`. Oleh karena itu, hasil schema conformity dan temporal integrity pada CSV tidak boleh ditafsirkan sebagai bukti physical-to-digital latency, occupancy staleness, exact camera-sensor synchronization, atau end-to-end synchronization performance.
+
 ## Informasi provenance yang masih diperlukan untuk publikasi
 
 - commit sumber implementasi yang digunakan saat ekspor;

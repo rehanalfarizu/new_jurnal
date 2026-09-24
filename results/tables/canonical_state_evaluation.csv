@@ -1,0 +1,23 @@
+category,metric,value,denominator,rate,unit,status,definition
+transformation,total_raw_records_evaluated,2027520,,,record,observed,Seluruh baris data selain header
+transformation,successful_canonical_transformations,2027520,2027520,1.0,record,pass,Transformer mengembalikan canonical state tanpa exception
+transformation,failed_canonical_transformations,0,2027520,0.0,record,pass,Transformer menimbulkan exception
+schema,schema_conforming_records,2027520,2027520,1.0,record,pass,"Struktur, field wajib, tipe nullable, dan metadata sesuai schema canonical"
+schema,schema_conformity_rate,1.0,,,ratio,pass,schema_conforming_records / total_raw_records_evaluated
+completeness,complete_expected_telemetry_cells,16220160,16220160,1.0,field,pass,Field canonical yang bersumber langsung dari delapan field telemetry dan bernilai non-null
+completeness,required_field_completeness_rate,1.0,,,ratio,pass,Complete expected telemetry cells / seluruh expected telemetry cells; room_id tidak masuk denominator
+type,data_type_valid_records,2027520,2027520,1.0,record,pass,"Tidak memiliki invalid numeric, non-finite, atau non-integer flag; missing dinilai terpisah"
+timestamp,timestamp_valid_records,2027520,2027520,1.0,record,pass,Timestamp dapat diparse dan direpresentasikan sebagai UTC
+timestamp,timestamp_naive_localized_as_utc,2027520,2027520,1.0,record,observed,Clock value naive diinterpretasikan sebagai UTC tanpa pergeseran
+timestamp,timestamp_aware_converted_to_utc,0,2027520,0.0,record,observed,Timestamp dengan offset dikonversi ke UTC
+temporal,non_monotonic_source_pairs,0,,,record,pass,Pasangan timestamp berurutan dalam file dengan waktu menurun
+temporal,duplicate_timestamp_rows,0,,,record,pass,Baris berlebih dengan timestamp UTC yang sama
+temporal,duplicate_timestamp_groups,0,,,record,pass,Kelompok timestamp UTC dengan lebih dari satu record
+temporal,temporal_gaps,176,,,record,observed,Interval setelah pengurutan yang lebih besar dari 60 detik
+temporal,deterministic_ordering_verified,1,,,boolean,pass,Urutan canonical ditentukan oleh timestamp_utc dan source_row_number sebagai tie-breaker unik
+quality,canonical_valid_records,2027520,2027520,1.0,record,pass,"Record tanpa missing, invalid timestamp/type, non-finite, non-integer, atau range violation"
+correctness,value_preservation_comparisons,16220160,,,field,observed,Perbandingan source-to-state pada nilai sumber yang dapat diparse
+correctness,value_preservation_mismatches,0,16220160,0.0,field,pass,Nilai canonical berbeda dari nilai sumber setelah transformasi yang terdokumentasi
+correctness,value_preservation_rate,1.0,,,ratio,pass,Perbandingan source-to-state yang mempertahankan nilai / seluruh perbandingan
+determinism,records_rechecked,204,,,record,observed,"Record pertama, terakhir, dan setiap 10,000 record ditransformasikan ulang"
+determinism,determinism_failures,0,204,0.0,record,pass,Transformasi ulang raw record yang sama menghasilkan representasi berbeda

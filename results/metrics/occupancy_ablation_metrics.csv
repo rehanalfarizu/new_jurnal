@@ -1,0 +1,13 @@
+model,role,split,metric,value,unit,target
+non_occupancy_multivariate_ridge,control,validation,mae,1.0748017022926186,W,target_power_30m
+non_occupancy_multivariate_ridge,control,validation,rmse,1.7601478373812938,W,target_power_30m
+non_occupancy_multivariate_ridge,control,validation,r2,0.6143920889721102,dimensionless,target_power_30m
+non_occupancy_multivariate_ridge,control,test,mae,1.0800989673662498,W,target_power_30m
+non_occupancy_multivariate_ridge,control,test,rmse,1.6208652205943326,W,target_power_30m
+non_occupancy_multivariate_ridge,control,test,r2,0.6471604620985363,dimensionless,target_power_30m
+occupancy_multivariate_ridge,treatment,validation,mae,1.0650408739921051,W,target_power_30m
+occupancy_multivariate_ridge,treatment,validation,rmse,1.7433926818721488,W,target_power_30m
+occupancy_multivariate_ridge,treatment,validation,r2,0.6216984856978218,dimensionless,target_power_30m
+occupancy_multivariate_ridge,treatment,test,mae,1.0693887584729078,W,target_power_30m
+occupancy_multivariate_ridge,treatment,test,rmse,1.600945021043651,W,target_power_30m
+occupancy_multivariate_ridge,treatment,test,r2,0.6557798629802756,dimensionless,target_power_30m

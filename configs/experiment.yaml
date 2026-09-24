@@ -1,4 +1,4 @@
-status: stage_3_forecasting_foundation
+status: stage_4_occupancy_ablation
 random_seed: 42
 
 data:
@@ -83,3 +83,16 @@ evaluation:
 reporting:
   results_are_generated: true
   overwrite_raw_data: false
+
+occupancy_ablation:
+  research_question: Does occupancy information provide incremental predictive value for 30-minute-ahead smart-room power forecasting?
+  control_model: non_occupancy_multivariate_ridge
+  treatment_model: occupancy_multivariate_ridge
+  paired_common_samples: true
+  delta_definition: treatment_minus_control
+  percentage_improvement_definition: control_minus_treatment_divided_by_control
+  uncertainty:
+    method: moving_block_bootstrap_paired_absolute_error_difference
+    block_size_samples: 1440
+    iterations: 1000
+    confidence_level: 0.95

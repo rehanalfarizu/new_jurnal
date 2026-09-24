@@ -1,12 +1,12 @@
-# Research code
+# Source code penelitian
 
-Code is separated by scientific responsibility. Each module must expose deterministic functions that can be tested without notebooks or the existing dashboard.
+Kode dipisahkan berdasarkan tanggung jawab ilmiah. Fungsi utama dapat diuji tanpa notebook dan tanpa menjalankan dashboard existing.
 
-- `preprocessing`: raw intake, validation, timestamp handling, gaps, duplicates, and audit logs.
-- `twin_state`: raw-to-canonical mapping, quality flags, and state serialization.
-- `features`: leakage-safe temporal, lag, rolling, environmental, and occupancy features.
-- `forecasting`: persistence and comparable statistical or machine-learning baselines.
-- `evaluation`: temporal splits, metrics, residuals, ablation comparisons, and output writers.
-- `decision_support`: transparent scenario rules and trace generation.
+- `preprocessing`: intake data mentah, validasi, timestamp, gap, duplikasi, dan audit log;
+- `twin_state`: raw-to-canonical mapping, validator schema, quality flags, serialization, dan evaluasi empiris Tahap 5;
+- `features`: feature temporal, lag, rolling, lingkungan, dan occupancy yang mencegah leakage;
+- `forecasting`: persistence dan baseline statistik atau machine learning yang sebanding;
+- `evaluation`: temporal split, metrik, residual, ablation comparison, dan output writer;
+- `decision_support`: rule skenario dan trace yang transparan.
 
-No source module is implemented at the audit checkpoint.
+Notebook hanya menjadi antarmuka reproducible. Source of truth komputasi tetap berada di direktori ini.

@@ -1,0 +1,51 @@
+{
+  "stage": 5,
+  "generated_at_utc": "2026-09-24T12:07:17.466362+00:00",
+  "input_file": "sensor_data.csv",
+  "input_sha256": "ca7831a188a191edbf82a673fac90dbb875b5095986ed07699c02530f2a02a0e",
+  "config_sha256": "39af52c562fe3cdd671107b87acb91adc9242a640c3c64f81e2466086c774d5c",
+  "code_sha256": {
+    "src/twin_state/evaluation.py": "786aaf3d65d65725a166c008a6dbb5dbb3c0c6998d60790acdfd4c7a8348f0b6",
+    "src/twin_state/canonical.py": "403e16a1bb4a4e51398fc6a34543700bc46969871d06ea6b70b9be142d2b8694"
+  },
+  "git_commit": "cd71c0b8b14b0cc4aef4fda5af5bff5ced964480",
+  "working_tree_dirty": true,
+  "schema_version": "1.0.0-research",
+  "summary": {
+    "total_raw_records_evaluated": 2027520,
+    "successful_canonical_transformations": 2027520,
+    "failed_canonical_transformations": 0,
+    "schema_conforming_records": 2027520,
+    "schema_conformity_rate": 1.0,
+    "required_field_completeness_rate": 1.0,
+    "data_type_validity_rate": 1.0,
+    "timestamp_validity_rate": 1.0,
+    "value_preservation_rate": 1.0,
+    "determinism_checks": 204,
+    "determinism_failures": 0,
+    "non_monotonic_source_pairs": 0,
+    "duplicate_timestamp_rows": 0,
+    "temporal_gaps": 176,
+    "room_id_unresolved_records": 2027520,
+    "staleness_unavailable_records": 2027520
+  },
+  "validation_counters": {
+    "quality_flags": {
+      "room_id_unresolved": 2027520
+    },
+    "schema_violations": {},
+    "transformation_errors": {}
+  },
+  "limitations": [
+    "Tidak tersedia timestamp independen camera capture.",
+    "Tidak tersedia timestamp independen sensor measurement.",
+    "Tidak tersedia timestamp independen gateway arrival.",
+    "Tidak tersedia timestamp independen cloud ingestion.",
+    "Physical-to-digital latency, occupancy staleness, exact camera-sensor synchronization, dan end-to-end synchronization performance tidak dapat dihitung."
+  ],
+  "official_outputs": {
+    "canonical_state_evaluation": "results/tables/canonical_state_evaluation.csv",
+    "canonical_field_mapping": "results/tables/canonical_field_mapping.csv",
+    "digital_twin_data_quality": "results/tables/digital_twin_data_quality.csv"
+  }
+}

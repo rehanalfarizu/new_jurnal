@@ -4,3 +4,8 @@
 - `forecast_error_distribution.png` menampilkan distribusi `prediction − actual` pada seluruh common test samples untuk model yang sama.
 
 Figure bersifat diagnostik. Spike yang tidak tertangkap model tetap ditampilkan dan tidak dihapus dari evaluasi.
+
+- `occupancy_ablation_comparison.png` membandingkan test MAE, RMSE, dan R² control versus treatment.
+- `occupancy_level_error.png` membandingkan test MAE menurut occupancy count 0–5.
+
+Kedua figure Tahap 4 dibuat oleh pipeline resmi dan hanya dibaca oleh notebook.

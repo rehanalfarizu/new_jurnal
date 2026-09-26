@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this research repository, cite the repository and the associated paper when available."
-title: "Empirical Evaluation of a Canonical-State Digital Twin Framework for Occupancy-Aware Smart-Room Energy Forecasting and Decision Support"
+title: "A Canonical-State Digital Twin Framework for Occupancy-Aware Smart-Room Power Forecasting and Decision Support"
 type: software
 authors:
   - given-names: "Muhammad Raihan"

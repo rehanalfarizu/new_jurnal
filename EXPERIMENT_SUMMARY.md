@@ -4,7 +4,7 @@ Dokumen ini adalah single source of verified experimental facts untuk repository
 
 ## 1. Judul penelitian
 
-**Empirical Evaluation of a Canonical-State Digital Twin Framework for Occupancy-Aware Smart-Room Energy Forecasting and Decision Support**
+**A Canonical-State Digital Twin Framework for Occupancy-Aware Smart-Room Power Forecasting and Decision Support**
 
 ## 2. Research questions
 

@@ -1,12 +1,16 @@
-# Empirical Evaluation of a Canonical-State Digital Twin Framework
+# A Canonical-State Digital Twin Framework for Occupancy-Aware Smart-Room Power Forecasting and Decision Support
 
-Repository ini memuat penelitian, eksperimen, evaluasi, dan artefak reproduksibilitas untuk penelitian **“Empirical Evaluation of a Canonical-State Digital Twin Framework for Occupancy-Aware Smart-Room Energy Forecasting and Decision Support.”** Repository ini tidak menyalin atau membangun ulang aplikasi Digital Twin pada `dashboard_digitaltwin`.
+Repository ini memuat penelitian, eksperimen, evaluasi, dan artefak reproduksibilitas untuk penelitian **“A Canonical-State Digital Twin Framework for Occupancy-Aware Smart-Room Power Forecasting and Decision Support.”** Repository ini tidak menyalin atau membangun ulang aplikasi Digital Twin pada `dashboard_digitaltwin`.
 
 ## Status
 
 Tahap 2–6 telah diimplementasikan. Tahap 5 mengevaluasi Canonical Twin State tanpa mengulang forecasting atau occupancy ablation. Tahap 6 menambahkan **Decision-Support Scenario Evaluation** yang memakai output forecast occupancy-aware Tahap 4 serta state saat ini, dengan rule dan threshold yang dapat diaudit.
 
 Fakta eksperimen yang telah diverifikasi dikonsolidasikan pada [`EXPERIMENT_SUMMARY.md`](EXPERIMENT_SUMMARY.md). Manifest historis tetap dipertahankan sesuai kondisi ketika eksperimen dijalankan.
+
+### Catatan provenance judul
+
+Eksperimen ilmiah tetap dibekukan pada tag `experiment-v1.0`. Judul manuskrip disempurnakan setelah freeze untuk menegaskan bahwa target prediksi adalah `power(t+30 min)` dalam W. Perubahan ini hanya menyelaraskan dokumentasi dan terminologi; tidak ada scientific code, pemrosesan data, konfigurasi, model, metrik, threshold, atau hasil yang berubah.
 
 Notebook [`notebooks/04_occupancy_ablation.ipynb`](notebooks/04_occupancy_ablation.ipynb) menyediakan antarmuka Jupyter/Google Colab. Notebook tidak menduplikasi logika eksperimen; seluruh perhitungan resmi tetap berada di `src/` dan hasil machine-readable tetap ditulis ke `results/`.
 

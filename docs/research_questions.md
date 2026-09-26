@@ -14,7 +14,7 @@ Evidence: timestamp-matched future target, temporal partitions, persistence and 
 
 ## RQ3
 
-Does occupancy information provide incremental predictive value for 30-minute-ahead smart-room energy forecasting?
+Does occupancy information provide incremental predictive value for 30-minute-ahead smart-room power forecasting, where the target is `power(t+30 min)` in W?
 
 Evidence: paired environment-without-occupancy and environment-with-occupancy models under identical data, preprocessing, temporal splits, model family, and tuning budget.
 

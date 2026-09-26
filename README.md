@@ -6,6 +6,8 @@ Repository ini memuat penelitian, eksperimen, evaluasi, dan artefak reproduksibi
 
 Tahap 2–6 telah diimplementasikan. Tahap 5 mengevaluasi Canonical Twin State tanpa mengulang forecasting atau occupancy ablation. Tahap 6 menambahkan **Decision-Support Scenario Evaluation** yang memakai output forecast occupancy-aware Tahap 4 serta state saat ini, dengan rule dan threshold yang dapat diaudit.
 
+Fakta eksperimen yang telah diverifikasi dikonsolidasikan pada [`EXPERIMENT_SUMMARY.md`](EXPERIMENT_SUMMARY.md). Manifest historis tetap dipertahankan sesuai kondisi ketika eksperimen dijalankan.
+
 Notebook [`notebooks/04_occupancy_ablation.ipynb`](notebooks/04_occupancy_ablation.ipynb) menyediakan antarmuka Jupyter/Google Colab. Notebook tidak menduplikasi logika eksperimen; seluruh perhitungan resmi tetap berada di `src/` dan hasil machine-readable tetap ditulis ke `results/`.
 
 Notebook [`notebooks/05_digital_twin_evaluation.ipynb`](notebooks/05_digital_twin_evaluation.ipynb) menyediakan antarmuka Tahap 5 dengan prinsip source of truth yang sama.

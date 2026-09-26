@@ -248,6 +248,8 @@ paper/figures/*.svg
 paper/tables/*.csv
 
 # Local research configuration and credentials
+AzuriteConfig
+__azurite_db_*.json
 .env.*
 !.env.example
 mlruns/

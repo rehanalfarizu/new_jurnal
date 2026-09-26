@@ -1,0 +1,139 @@
+{
+  "freeze_version": "1.0.0",
+  "generated_at_utc": "2026-09-26T12:02:43.227622+00:00",
+  "frozen_source_commit": "d21c6ff5a38286a0e31481ef696862c0bb3d15b5",
+  "environment": {
+    "python_version": "3.11.9",
+    "requirements_file": "requirements.txt",
+    "requirements_sha256": "2928190260e5508b7ce63193ac7d6fce4cb287eec7633ed45c9ddb9dcb3f0786"
+  },
+  "dataset": {
+    "filename": "sensor_data.csv",
+    "expected_local_path": "data/raw/sensor_data.csv",
+    "tracked_by_git": false,
+    "sha256": "ca7831a188a191edbf82a673fac90dbb875b5095986ed07699c02530f2a02a0e"
+  },
+  "config_checksums": {
+    "configs/decision_support.yaml": "8af5b37ef02c66d9d1ecdce04d5915d004f57ec8d71af8b7dfde88a8bd4e0fa4",
+    "configs/experiment.yaml": "39af52c562fe3cdd671107b87acb91adc9242a640c3c64f81e2466086c774d5c",
+    "configs/features.yaml": "8af86a0bf1c4e7ef631281c42bb559afbde8361ed44d2499761b1a34689016ae"
+  },
+  "historical_manifest_checksums": {
+    "stage_3": {
+      "path": "results/metrics/forecast_run_manifest.json",
+      "sha256": "4895b646d8bbd0f0464ec3459f08ddc1731fd8e37acc66658dc576fbedf95b06"
+    },
+    "stage_4": {
+      "path": "results/metrics/occupancy_ablation_manifest.json",
+      "sha256": "16801347be0ca2eeb85b33a50a754cbd0654822685b7c35aa7461cdaedc0bdf5"
+    },
+    "stage_5": {
+      "path": "results/metrics/canonical_state_evaluation_manifest.json",
+      "sha256": "43d3ef7735d9af7f7bf988b8abe104eb37fe79fa86e21d5c84aa0a778036a802"
+    },
+    "stage_6": {
+      "path": "results/metrics/decision_support_manifest.json",
+      "sha256": "fdddd59a62cc1b95fc09b1a2eb95c0ec3b02f74a49597d5afce68b1dd91e6f32"
+    }
+  },
+  "notebook_checksums": {
+    "notebooks/01_dataset_exploration.ipynb": "53cc7ad6c58e36e1799729644e712462347f3a11cba83bd9b9884658daaedabd",
+    "notebooks/02_canonical_twin_state.ipynb": "b793d2579630f33ca5d40c109c70f0e5ee8c11b2e1b3c6df2bff0d8f5f78070e",
+    "notebooks/03_baseline_forecasting.ipynb": "93bdaa4fee5fe826e780726f58b5dfe03a6dd78f3eb35bf0d4e17dfa579a865e",
+    "notebooks/04_occupancy_ablation.ipynb": "ce7b67a9ae409d8bb84a3a4bcb42b5c8e31d0e4be657e0108655c3ee4ab99b8a",
+    "notebooks/05_digital_twin_evaluation.ipynb": "2913d1c53055ac85ca70ec26b1dbd815e868034c2d09519fcba409c6366581b8",
+    "notebooks/06_decision_support_analysis.ipynb": "86db5650db6049f3211e4cda9763108819ed93cf4584b3183d910c25f6f6795a"
+  },
+  "official_artifact_checksums": {
+    "tables": {
+      "results/tables/README.md": "6408f600eb2a7f9e9e0b456cbc67724135261bc1996114f3d54b2438e04896d3",
+      "results/tables/baseline_model_comparison.csv": "6213c2bf2ca073083e707f29a1d65565f785947a165e06e757f9251be457bb61",
+      "results/tables/canonical_field_mapping.csv": "802993f5f93ac273eaf1a64919595108f1fc489c17b192e8faeb2ad563474afb",
+      "results/tables/canonical_state_evaluation.csv": "1f1bcd7b1ac6cd58c9e7f6b121b52f86e45251f4e53d3c04d57b7aa8f5c8c473",
+      "results/tables/column_schema.csv": "d8815b612778c5f5b90bc65607e82b53c76530542ef7fb99ab41f902098accaa",
+      "results/tables/data_quality_summary.csv": "4d804369a28af1ce3032657ac02421b6770f9d453144147865b15abf73bdfef3",
+      "results/tables/dataset_summary.csv": "3ebaf4c11bebb5ba2875a11e63d22498f54b595f80d926d49fde3905fbeac25f",
+      "results/tables/decision_support_consistency.csv": "f71a0a457ace41d5237e0b5083b46c50e192c190e8eeab4027a0f34169a74f25",
+      "results/tables/decision_support_rule_summary.csv": "c1cff796e21a62da1030d45fe11618dd82e517b2b7ec305c62fd860bdd810766",
+      "results/tables/decision_support_scenarios.csv": "9572387202e30a796ef02817b89e8cd1be8e1a3b0f7a108cbe4fd17c270b05b7",
+      "results/tables/descriptive_statistics.csv": "c343734960c4cf9eb99b0c1b0dfb750ff8f672ef9f03cb02fad381594e425fbf",
+      "results/tables/device_summary.csv": "d95fad3797a0da066b2929e7d92271c819c0ad2a440865b06fbdbbff08d0ab6e",
+      "results/tables/digital_twin_data_quality.csv": "addafb1172a7e1cbef0ca05d40358fc55befe6423e62d12c0dc62a48c14e10cc",
+      "results/tables/duplicate_summary.csv": "dde86b490b91fc8e05bca5b9a641fad6d4db6fb15bd6287d908823004f727d62",
+      "results/tables/fair_ablation_check.csv": "91e9715f0eafc24881f9a6190ef1df6c7aa3f27618ee7d74efec1cdf7696328b",
+      "results/tables/feature_definition.csv": "1653d4756860370032db9ffb640a04d349ec8518f264bd433078eaf00c757299",
+      "results/tables/missing_values.csv": "b95bbfa1db8cec381ec9113f20298a410bdaddf4a57592ae0c147cae353019f0",
+      "results/tables/modeling_dataset_summary.csv": "8a10644a73612ff8a76df3a6ef6ba6d9aa6e61082caedfe52f36741642e787bc",
+      "results/tables/occupancy_ablation_comparison.csv": "3b07ff6e3de7eef0dae2cb788b50b7828790651a1a21da585c3c350b64c274aa",
+      "results/tables/occupancy_ablation_feature_definition.csv": "e804d1bf619fbe33eea1f156ded413d434f80eb396f1fe37694cf4a132130901",
+      "results/tables/occupancy_ablation_validation_tuning.csv": "534250b64ec42476205c5fc58f17ddbe798270ff279eeba1f3f82508f26626ca",
+      "results/tables/occupancy_level_error.csv": "9acbcf3286f4ac186284c8c8948848364020454b943285842219f42023399e03",
+      "results/tables/outlier_summary.csv": "53daeabb404af80288a6e833860fd3339ba3e7a41ee1d3990610784292b95b4d",
+      "results/tables/power_resampling_comparison.csv": "422cb639f4c0a48bae27405f70ca9650fda46b5f43b619f7d5d2cb2ba8e11fb6",
+      "results/tables/preprocessing_report.csv": "f6527193e497bba9b6b8c842877fafc83b38dd896c51c9f10532937e479343d2",
+      "results/tables/range_validation.csv": "f727d8aa8330ed5b1f1cf41d7709e10dd0307d3a0e62a2c233764907af555ba9",
+      "results/tables/sample_exclusion_summary.csv": "13795d98adf03aa384f1a3d5ce81a09596e12bda03fa0c97b6a7f1870ecca9b4",
+      "results/tables/sampling_interval_distribution.csv": "eab326922373a6192c25fb23189b8a0cb68df5f06bb5a7939571553150378c2c",
+      "results/tables/temporal_gaps.csv": "bd8791cd88b83d958f2f84bde3ae2d46adef1c8f252f0211b2e47ba1c0da52c4",
+      "results/tables/temporal_split.csv": "ed1b3e83297e1500a38860e2729ffdff14b995099df59e4ae4c9546caeb7eb46",
+      "results/tables/validation_tuning.csv": "2251ca9d19ad78660d16e2a0bb4c1401615c0cadde5de98083f04fa31e30a603",
+      "results/tables/variable_distributions.csv": "c6d29c275fe6db04de3db74ac30c8b95b804ca59bf6f7b8b3a57f0331a9bfa24"
+    },
+    "metrics": {
+      "results/metrics/README.md": "ddc7fea53fa991e1f3ef5c535b2654f715c7222f48377c3495d1259674746368",
+      "results/metrics/canonical_state_evaluation_manifest.json": "43d3ef7735d9af7f7bf988b8abe104eb37fe79fa86e21d5c84aa0a778036a802",
+      "results/metrics/decision_support_manifest.json": "fdddd59a62cc1b95fc09b1a2eb95c0ec3b02f74a49597d5afce68b1dd91e6f32",
+      "results/metrics/forecast_metrics.csv": "5e0dba160c8d963a77451aaffa6e27055dfcf60f4646bc8c8c060f0bf11675fd",
+      "results/metrics/forecast_run_manifest.json": "4895b646d8bbd0f0464ec3459f08ddc1731fd8e37acc66658dc576fbedf95b06",
+      "results/metrics/occupancy_ablation_bootstrap.csv": "84a43a92ad9f68d1c4a92c30685f58a3b8192bddf3ac9bfd25481142c2ae9c02",
+      "results/metrics/occupancy_ablation_manifest.json": "16801347be0ca2eeb85b33a50a754cbd0654822685b7c35aa7461cdaedc0bdf5",
+      "results/metrics/occupancy_ablation_metrics.csv": "3ceb1affe7ec17bd2689bf909221c5d810540d621eb0b54cf359f01fb655a070",
+      "results/metrics/occupancy_ablation_test_predictions.csv": "2ad2c53f495d921dbea849661bd3facaf18bce87eebd185ecf3a58937814b7e2",
+      "results/metrics/test_predictions.csv": "b7ae3672f113a60819fa7fc7b69e8cb4c2f0ee429933e66efc8f06fc66fce51e"
+    },
+    "figures": {
+      "results/figures/README.md": "cf45548a655289b2a35864c827158e52df92833c195fc46e3b45711b8881cad1",
+      "results/figures/decision_support_forecast_delta.png": "61548de2ee57091cda53afd371bdd87ebad4c4db9d8e8a4e6859bc4b8448ca8d",
+      "results/figures/decision_support_occupancy_distribution.png": "18366bba9f244a57329f121bc2c3e05298e35e24b161214cecf2b71699a99bf8",
+      "results/figures/decision_support_rule_frequency.png": "e46ddbff69968abf7373f496a3682fa0eaddc76205ed3faed3b4d96eeb781cbd",
+      "results/figures/forecast_actual_vs_predicted.png": "783c99fb2682d3507cb3d6068edf1fa493a9af8004fd889d84baab3668a79a25",
+      "results/figures/forecast_error_distribution.png": "7074cd8e35a599795d0b092cce778e7a4c62b39410367d344b111a838b412656",
+      "results/figures/occupancy_ablation_comparison.png": "3feddda841ae41b99b5442dd23c6119363467b88638f98f83137364b3f3fa8ad",
+      "results/figures/occupancy_level_error.png": "a0d7ebad7c75e4a1ce284f50da41912dc3056f9f6d624673a565de6735ced1cc"
+    }
+  },
+  "artifact_inventory": {
+    "tables": 32,
+    "metrics_excluding_this_manifest": 10,
+    "figures": 8,
+    "total_excluding_this_manifest": 50,
+    "duplicate_content_detected": false
+  },
+  "validation": {
+    "compileall": "PASS",
+    "tests": {
+      "passed": 40,
+      "failed": 0,
+      "status": "PASS"
+    },
+    "git_diff_check": "PASS",
+    "clean_tree_at_frozen_source_commit": true,
+    "notebooks": {
+      "count": 6,
+      "stored_outputs": 0,
+      "non_null_execution_counts": 0,
+      "local_absolute_paths_detected": false,
+      "secrets_detected": false,
+      "status": "PASS"
+    },
+    "historical_manifests_preserved": true,
+    "scientific_configuration_frozen": true
+  },
+  "azurite_local_state": {
+    "tracked_by_git": false,
+    "ignored_patterns": [
+      "AzuriteConfig",
+      "__azurite_db_*.json"
+    ]
+  }
+}

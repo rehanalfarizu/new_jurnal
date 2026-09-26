@@ -1,14 +1,21 @@
-# Known limitations before experiments
+# Keterbatasan penelitian
 
-- The CSV timestamp text has no timezone suffix. UTC origin is asserted in the supplied brief rather than encoded in the file.
-- One timestamp per row is insufficient for physical-to-digital latency measurement.
-- Original ESP32 and camera timestamps are not separate in the combined export, so occupancy alignment and staleness cannot be reconstructed.
-- All records use one gateway device ID; `room_id` is absent.
-- The exact Azure export script, query, table snapshot, and pre-export filtering are unavailable.
-- The electrical path in the inspected firmware uses legacy ZMPT101B/SCT013 sensing and calculated apparent power. The relationship to any later PZEM design is not established by the CSV.
-- Occupancy detector accuracy has no labeled benchmark in the supplied evidence.
-- The data covers one system and one observed period. Generalization to other rooms, buildings, sensors, or seasons requires new data.
-- Existing ML metrics use incompatible targets or random row splits and will not be reused as paper results.
-- Comfort and recommendation rules are heuristic and not calibrated PMV/PPD or measured occupant preference.
-- No recommendation acceptance, action, comfort outcome, or counterfactual energy data is available.
-- The JournalISI file is a template with placeholder content. It contains inconsistent issue headers and example references; it is only a structural reference.
+- Teks timestamp pada CSV tidak memiliki suffix timezone. Interpretasi sebagai UTC didasarkan pada provenance sistem yang telah diverifikasi; pipeline tidak menggeser clock value ketika melokalisasikan timestamp naive sebagai UTC.
+- CSV hanya menyediakan satu timestamp gabungan per record dan tidak menyediakan timestamp independen untuk `camera capture`, `sensor measurement`, `gateway arrival`, atau `cloud ingestion`.
+- Karena bukti waktu independen tersebut tidak tersedia, penelitian ini tidak menghitung atau mengklaim physical-to-digital latency, occupancy staleness, exact camera-sensor synchronization, maupun end-to-end synchronization performance.
+- Occupancy merepresentasikan latest available camera snapshot pada proses gateway. Data saat ini tidak membuktikan nearest-timestamp synchronization.
+- Seluruh record memakai satu gateway `DeviceID`; identitas fisik ruang tidak tersedia sehingga `room_id` tetap `unresolved`.
+- `room_id` yang unresolved tidak dimasukkan ke denominator completeness telemetry. `staleness_seconds` tetap `null` dan berstatus unavailable by design, bukan dianggap nol.
+- Skrip ekspor Azure, query, snapshot table/container, waktu ekspor, kebijakan retention, dan filtering sebelum ekspor belum tersedia secara lengkap.
+- Jalur pengukuran listrik pada firmware yang diperiksa menggunakan sensing ZMPT101B/SCT013 dan perhitungan apparent power. Hubungannya dengan kemungkinan desain PZEM yang lebih baru tidak dapat ditentukan dari CSV.
+- Akurasi detektor occupancy belum memiliki labeled benchmark pada bukti yang tersedia.
+- Dataset mencakup satu sistem dan satu periode observasi. Generalisasi ke ruang, bangunan, perangkat, atau musim lain memerlukan data tambahan.
+- Hasil occupancy ablation menguji predictive value, bukan causality. Confidence interval yang mencakup nol tidak diubah atau disembunyikan.
+- Target forecasting adalah power dalam Watt, bukan energy dalam Wh; hasil tidak menjadi bukti energy saving.
+- Rule kenyamanan dan rekomendasi masih bersifat heuristik, bukan PMV/PPD terkalibrasi atau preferensi penghuni yang diukur.
+- Belum tersedia data penerimaan rekomendasi, tindakan aktual, outcome kenyamanan, atau counterfactual energy untuk mengevaluasi decision support secara empiris.
+- Evaluasi Tahap 6 hanya menghitung perilaku rule pada skenario historis; recommendation belum diuji terhadap tindakan manusia dan tidak tersedia data accept/reject.
+- Tidak tersedia measured post-recommendation energy outcome, sehingga energy saving dan causal impact tidak dapat dihitung.
+- Threshold power, forecast delta, temperature, dan humidity Tahap 6 adalah `declared_research_scenario_threshold`, bukan safety limit atau standard comfort tervalidasi.
+- Decision support tidak melakukan autonomous control; seluruh output berupa rekomendasi pemeriksaan atau no-action/normal monitoring.
+- File JournalISI masih berupa template dengan placeholder, header issue yang tidak konsisten, dan referensi contoh; file tersebut hanya digunakan sebagai acuan struktur.

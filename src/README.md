@@ -7,6 +7,6 @@ Kode dipisahkan berdasarkan tanggung jawab ilmiah. Fungsi utama dapat diuji tanp
 - `features`: feature temporal, lag, rolling, lingkungan, dan occupancy yang mencegah leakage;
 - `forecasting`: persistence dan baseline statistik atau machine learning yang sebanding;
 - `evaluation`: temporal split, metrik, residual, ablation comparison, dan output writer;
-- `decision_support`: rule skenario dan trace yang transparan.
+- `decision_support`: rule skenario, trace recommendation, evaluasi konsistensi, deteksi konflik, dan artefak reproduksibilitas Tahap 6.
 
 Notebook hanya menjadi antarmuka reproducible. Source of truth komputasi tetap berada di direktori ini.

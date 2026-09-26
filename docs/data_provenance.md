@@ -63,3 +63,19 @@ Evaluasi Tahap 5 juga tidak mengubah keterbatasan tersebut. Dataset tidak menyed
 - kebijakan filtering, retention, dan deduplication sebelum ekspor.
 
 Repository ini tidak mengklaim latency end-to-end, sinkronisasi sensor secara simultan, efek kausal occupancy, atau fidelity fisik-ke-digital yang lengkap dari CSV saat ini.
+
+## Lineage Decision-Support Scenario Evaluation
+
+Tahap 6 tidak menambahkan sumber pengukuran baru. Lineage evaluasinya adalah:
+
+```text
+Canonical telemetry fields
+  + state satu menit pada waktu t
+  + prediksi treatment occupancy-aware untuk t+30 menit
+  → alignment one-to-one berdasarkan timestamp_utc
+  → forecast_delta_w = forecast_power_30m_w - current_power_w
+  → rule engine dari configs/decision_support.yaml
+  → recommendation trace dan consistency checks
+```
+
+`device_id` diambil dari ringkasan satu perangkat Tahap 2. `room_id` tetap `unresolved` sesuai konfigurasi Canonical Twin State dan tidak diganti dengan identitas buatan. Prediksi berasal dari `occupancy_multivariate_ridge` Tahap 4; model tersebut tidak dilatih ulang oleh pipeline Tahap 6.

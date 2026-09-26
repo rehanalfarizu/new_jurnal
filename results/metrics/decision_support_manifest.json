@@ -1,0 +1,165 @@
+{
+  "stage": 6,
+  "evaluation_name": "Decision-Support Scenario Evaluation",
+  "generated_at_utc": "2026-09-24T17:09:32.513759+00:00",
+  "source_scope": "official_stage_4_test_predictions_joined_to_stage_3_modeling_state",
+  "forecast_model_retrained": false,
+  "forecast_model": "occupancy_multivariate_ridge",
+  "forecast_horizon_minutes": 30,
+  "forecast_delta_definition": "forecast_power_30m_w - current_power_w",
+  "input_files": {
+    "predictions": "results/metrics/occupancy_ablation_test_predictions.csv",
+    "modeling_state": "data/processed/modeling_1min.csv",
+    "experiment_config": "configs/experiment.yaml",
+    "decision_support_config": "configs/decision_support.yaml",
+    "device_summary": "results/tables/device_summary.csv",
+    "stage_4_manifest": "results/metrics/occupancy_ablation_manifest.json",
+    "stage_5_manifest": "results/metrics/canonical_state_evaluation_manifest.json"
+  },
+  "input_sha256": {
+    "predictions": "2ad2c53f495d921dbea849661bd3facaf18bce87eebd185ecf3a58937814b7e2",
+    "modeling_state": "79fc938eea8e78e27ed7c1f633de0be2f834a1dd1b86039cbdfbbc73968ecdb9",
+    "experiment_config": "39af52c562fe3cdd671107b87acb91adc9242a640c3c64f81e2466086c774d5c",
+    "decision_support_config": "8af5b37ef02c66d9d1ecdce04d5915d004f57ec8d71af8b7dfde88a8bd4e0fa4",
+    "device_summary": "d95fad3797a0da066b2929e7d92271c819c0ad2a440865b06fbdbbff08d0ab6e",
+    "stage_4_manifest": "16801347be0ca2eeb85b33a50a754cbd0654822685b7c35aa7461cdaedc0bdf5",
+    "stage_5_manifest": "43d3ef7735d9af7f7bf988b8abe104eb37fe79fa86e21d5c84aa0a778036a802"
+  },
+  "output_sha256": {
+    "scenarios": "9572387202e30a796ef02817b89e8cd1be8e1a3b0f7a108cbe4fd17c270b05b7",
+    "rule_summary": "c1cff796e21a62da1030d45fe11618dd82e517b2b7ec305c62fd860bdd810766",
+    "consistency": "f71a0a457ace41d5237e0b5083b46c50e192c190e8eeab4027a0f34169a74f25",
+    "figures": {
+      "results/figures/decision_support_rule_frequency.png": "e46ddbff69968abf7373f496a3682fa0eaddc76205ed3faed3b4d96eeb781cbd",
+      "results/figures/decision_support_occupancy_distribution.png": "18366bba9f244a57329f121bc2c3e05298e35e24b161214cecf2b71699a99bf8",
+      "results/figures/decision_support_forecast_delta.png": "61548de2ee57091cda53afd371bdd87ebad4c4db9d8e8a4e6859bc4b8448ca8d"
+    }
+  },
+  "code_sha256": {
+    "src/decision_support/engine.py": "f3f71601575058c9f19be085eec0770f6be051f0b03252a3307df7e6e0a453a3",
+    "src/decision_support/evaluation.py": "c19c15e4b841ca677fe9f1b68c47d9013e16a552f611aea568ecf38af0c7eb14"
+  },
+  "git_commit": "24856fdd350495959b513ab9f23b065ff5cd8c01",
+  "working_tree_dirty": true,
+  "input_alignment": {
+    "prediction_rows": 18126,
+    "state_rows": 128289,
+    "merged_rows": 18126,
+    "unmatched_state_rows": 0,
+    "occupancy_mismatch_rows": 0,
+    "prediction_duplicate_timestamps": 0,
+    "state_duplicate_timestamps": 0,
+    "missing_required_input_values": 0,
+    "device_id": "RASPBERRY_PI_GATEWAY_001",
+    "device_resolution": "single_device_from_stage_2_summary",
+    "room_id": "unresolved",
+    "room_resolution": "unresolved_preserved_from_experiment_config",
+    "schema_version": "1.0.0-research"
+  },
+  "raw_dataset_checksum_consistent_between_stage_4_and_stage_5": true,
+  "summary": {
+    "evaluated_sample_count": 18126,
+    "recommendation_count": 18126,
+    "active_recommendation_sample_count": 4318,
+    "recommendation_coverage": 0.23822133951230276,
+    "no_action_count": 13808,
+    "invalid_input_count": 0,
+    "multiple_recommendation_sample_count": 0,
+    "contradictory_recommendation_count": 0,
+    "determinism_failure_count": 0,
+    "all_consistency_checks_passed": true,
+    "recommendation_count_by_rule": {
+      "DS-RULE-000": 0,
+      "DS-RULE-001": 45,
+      "DS-RULE-002": 45,
+      "DS-RULE-003": 4228,
+      "DS-RULE-004": 13808
+    },
+    "evaluation_start_timestamp_utc": "2026-05-10T16:39:00Z",
+    "evaluation_end_timestamp_utc": "2026-05-24T00:52:00Z"
+  },
+  "occupancy_distribution": {
+    "0": {
+      "sample_count": 899,
+      "samples_with_active_recommendation": 45,
+      "no_action_count": 854,
+      "recommendation_count": 899
+    },
+    "1": {
+      "sample_count": 1437,
+      "samples_with_active_recommendation": 450,
+      "no_action_count": 987,
+      "recommendation_count": 1437
+    },
+    "2": {
+      "sample_count": 3363,
+      "samples_with_active_recommendation": 902,
+      "no_action_count": 2461,
+      "recommendation_count": 3363
+    },
+    "3": {
+      "sample_count": 5115,
+      "samples_with_active_recommendation": 1353,
+      "no_action_count": 3762,
+      "recommendation_count": 5115
+    },
+    "4": {
+      "sample_count": 4071,
+      "samples_with_active_recommendation": 920,
+      "no_action_count": 3151,
+      "recommendation_count": 4071
+    },
+    "5": {
+      "sample_count": 3241,
+      "samples_with_active_recommendation": 648,
+      "no_action_count": 2593,
+      "recommendation_count": 3241
+    }
+  },
+  "time_period_distribution_utc": {
+    "afternoon": {
+      "sample_count": 4761,
+      "samples_with_active_recommendation": 1469,
+      "no_action_count": 3292,
+      "recommendation_count": 4761
+    },
+    "evening": {
+      "sample_count": 4159,
+      "samples_with_active_recommendation": 70,
+      "no_action_count": 4089,
+      "recommendation_count": 4159
+    },
+    "night": {
+      "sample_count": 4587,
+      "samples_with_active_recommendation": 666,
+      "no_action_count": 3921,
+      "recommendation_count": 4587
+    },
+    "morning": {
+      "sample_count": 4619,
+      "samples_with_active_recommendation": 2113,
+      "no_action_count": 2506,
+      "recommendation_count": 4619
+    }
+  },
+  "threshold_interpretation": "Semua threshold numerik rule operasional adalah declared research scenario threshold, bukan safety limit atau validated comfort standard.",
+  "limitations": [
+    "Recommendation belum diuji terhadap tindakan manusia.",
+    "Tidak tersedia data accept/reject recommendation.",
+    "Tidak tersedia measured post-recommendation energy outcome.",
+    "Tidak dilakukan causal evaluation.",
+    "Threshold belum mempunyai basis literatur dan diperlakukan sebagai declared research scenario threshold.",
+    "Sistem tidak melakukan autonomous control."
+  ],
+  "official_outputs": {
+    "scenarios": "results/tables/decision_support_scenarios.csv",
+    "rule_summary": "results/tables/decision_support_rule_summary.csv",
+    "consistency": "results/tables/decision_support_consistency.csv",
+    "manifest": "results/metrics/decision_support_manifest.json",
+    "figures": [
+      "results/figures/decision_support_rule_frequency.png",
+      "results/figures/decision_support_occupancy_distribution.png",
+      "results/figures/decision_support_forecast_delta.png"
+    ]
+  }
+}

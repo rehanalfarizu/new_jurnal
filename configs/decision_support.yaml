@@ -1,0 +1,89 @@
+status: stage_6_decision_support_scenario_evaluation
+schema_version: 1.0.0
+evaluation_name: Decision-Support Scenario Evaluation
+
+input:
+  evaluation_split: test
+  forecast_model: occupancy_multivariate_ridge
+  forecast_column: treatment_prediction_w
+  forecast_horizon_minutes: 30
+  current_power_column: power_w
+  occupancy_column: occupancy_count
+  timestamp_column: timestamp_utc
+  room_id_source: configs/experiment.yaml
+  device_id_source: results/tables/device_summary.csv
+
+time_periods_utc:
+  - name: night
+    start_hour_inclusive: 0
+    end_hour_exclusive: 6
+  - name: morning
+    start_hour_inclusive: 6
+    end_hour_exclusive: 12
+  - name: afternoon
+    start_hour_inclusive: 12
+    end_hour_exclusive: 18
+  - name: evening
+    start_hour_inclusive: 18
+    end_hour_exclusive: 24
+
+rules:
+  invalid_input:
+    rule_id: DS-RULE-000
+    name: invalid_or_missing_input
+    severity: review
+    priority: 1
+    action_class: review_input
+    threshold_basis: input_validation_requirement
+    recommendation_text: Periksa kelengkapan dan validitas input sebelum membuat rekomendasi operasional.
+
+  unoccupied_elevated_power:
+    rule_id: DS-RULE-001
+    name: unoccupied_but_elevated_power
+    severity: medium
+    priority: 2
+    action_class: inspect_active_load
+    occupancy_equals: 0
+    power_threshold_w: 40.0
+    comparator: greater_than
+    current_or_forecast: any
+    threshold_basis: declared_research_scenario_threshold
+    threshold_selection_note: scenario_evaluation_only_not_literature_derived_or_outcome_validated
+    recommendation_text: Periksa beban listrik yang masih aktif ketika ruang tidak terisi.
+
+  forecasted_power_increase:
+    rule_id: DS-RULE-002
+    name: forecasted_power_increase
+    severity: low
+    priority: 3
+    action_class: review_forecasted_load
+    forecast_delta_threshold_w: 2.0
+    comparator: greater_than
+    threshold_basis: declared_research_scenario_threshold
+    threshold_selection_note: scenario_evaluation_only_not_literature_derived_or_outcome_validated
+    recommendation_text: Tinjau kemungkinan beban mendatang karena forecast 30 menit lebih tinggi dari daya saat ini.
+
+  occupied_high_environment:
+    rule_id: DS-RULE-003
+    name: occupied_high_environmental_condition
+    severity: medium
+    priority: 2
+    action_class: inspect_room_condition
+    occupancy_min_exclusive: 0
+    temperature_threshold_c: 32.0
+    humidity_threshold_percent: 75.0
+    environmental_logic: any
+    comparator: greater_than
+    threshold_basis: declared_research_scenario_threshold
+    threshold_selection_note: scenario_evaluation_only_not_literature_derived_or_outcome_validated
+    recommendation_text: Periksa kondisi temperature dan humidity ruang yang sedang terisi.
+
+  normal_monitoring:
+    rule_id: DS-RULE-004
+    name: normal_monitoring
+    severity: info
+    priority: 4
+    action_class: no_action
+    activation_condition: no_significant_rule_triggered
+    threshold_basis: rule_fallback
+    recommendation_text: Tidak ada tindakan khusus; lanjutkan pemantauan normal.

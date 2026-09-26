@@ -1,0 +1,10 @@
+check_id,status,observed_value,expected_value,detail
+forecast_state_one_to_one_alignment,PASS,0,0,Setiap timestamp prediksi mempunyai satu state.
+occupancy_value_alignment,PASS,0,0,Occupancy pada output forecast sama dengan modeling state.
+required_input_completeness,PASS,0,0,Field input minimum tidak missing.
+recommendation_reason_trace,PASS,0,0,Setiap recommendation memiliki reason.
+threshold_configuration_trace,PASS,0,0,Setiap recommendation merekam konfigurasi rule.
+recommendation_id_unique,PASS,0,0,Recommendation ID unik pada output resmi.
+deterministic_output,PASS,0,0,Input identik dievaluasi dua kali dengan hasil identik.
+contradictory_recommendation_count,PASS,0,0,Fallback no-action tidak muncul bersama active recommendation.
+all_samples_receive_trace,PASS,18126,18126,Setiap sample menghasilkan minimal satu trace.

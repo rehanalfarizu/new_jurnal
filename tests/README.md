@@ -1,6 +1,6 @@
 # Pengujian
 
-Dua puluh sembilan unit test saat ini memverifikasi:
+Empat puluh unit test saat ini memverifikasi:
 
 - lokalisasi timestamp naive sebagai UTC tanpa pergeseran;
 - canonical twin state dan missing-versus-zero;
@@ -26,5 +26,12 @@ Dua puluh sembilan unit test saat ini memverifikasi:
 - `room_id` unresolved tidak membuat telemetry valid menjadi invalid;
 - `staleness_seconds` tetap `None` tanpa timestamp independen; serta
 - pipeline evaluasi Tahap 5 menghasilkan tabel schema, mapping, data quality, dan manifest dari data uji sintetis.
+- rule decision support A–D memakai threshold konfigurasi dan comparator yang eksplisit;
+- `forecast_delta_w` dihitung sebagai forecast 30 menit dikurangi current power;
+- setiap recommendation memiliki reason, threshold trace, dan ID deterministik;
+- missing occupancy berbeda dari occupancy nol dan missing forecast tidak dianggap nol;
+- input non-finite menghasilkan trace invalid input;
+- no-action dapat dihasilkan dan konflik no-action versus active recommendation dapat dideteksi; serta
+- input decision-support identik menghasilkan output identik.
 
 Jalankan dengan `python3 -m unittest discover -s tests -v`.

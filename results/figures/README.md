@@ -9,3 +9,11 @@ Figure bersifat diagnostik. Spike yang tidak tertangkap model tetap ditampilkan 
 - `occupancy_level_error.png` membandingkan test MAE menurut occupancy count 0–5.
 
 Kedua figure Tahap 4 dibuat oleh pipeline resmi dan hanya dibaca oleh notebook.
+
+Figure Tahap 6:
+
+- `decision_support_rule_frequency.png` menampilkan jumlah recommendation per rule;
+- `decision_support_occupancy_distribution.png` menampilkan active recommendation versus no-action per occupancy count; dan
+- `decision_support_forecast_delta.png` menampilkan distribusi `forecast_power_30m_w - current_power_w` untuk setiap rule.
+
+Figure Tahap 6 bersifat deskriptif terhadap evaluasi skenario. Figure tidak menunjukkan energy saving, efektivitas tindakan manusia, atau dampak kausal.

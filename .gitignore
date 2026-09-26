@@ -240,6 +240,9 @@ results/figures/*.svg
 !results/figures/forecast_error_distribution.png
 !results/figures/occupancy_ablation_comparison.png
 !results/figures/occupancy_level_error.png
+!results/figures/decision_support_rule_frequency.png
+!results/figures/decision_support_occupancy_distribution.png
+!results/figures/decision_support_forecast_delta.png
 paper/figures/*.png
 paper/figures/*.svg
 paper/tables/*.csv

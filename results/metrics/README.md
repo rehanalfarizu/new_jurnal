@@ -1,4 +1,4 @@
-# Metrik forecasting
+# Metrik dan manifest evaluasi
 
 - `forecast_metrics.csv` menyimpan MAE, RMSE, dan R² untuk validation serta test.
 - `test_predictions.csv` menyimpan timestamp, target timestamp, actual power, dan prediksi ketiga baseline pada common test samples.
@@ -16,3 +16,9 @@ Artefak Tahap 4:
 Artefak Tahap 5:
 
 - `canonical_state_evaluation_manifest.json`: checksum dataset/config/source code, ringkasan evaluasi canonical, validation counters, limitations, dan path tabel resmi.
+
+Artefak Tahap 6:
+
+- `decision_support_manifest.json`: checksum seluruh input dan source code Tahap 6, lineage forecast, metadata canonical, jumlah sample/recommendation, coverage, distribusi occupancy dan periode waktu UTC, consistency result, limitations, serta path output resmi.
+
+Manifest Tahap 6 mencatat bahwa model forecasting tidak dilatih ulang. Angka decision support adalah evaluasi skenario rule pada output test historis, bukan outcome intervensi.

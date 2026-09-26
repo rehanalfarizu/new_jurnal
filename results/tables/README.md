@@ -35,3 +35,13 @@ Tahap 5 menambahkan:
 | `digital_twin_data_quality.csv` | Completeness per kategori, metadata unresolved, derived quality fields, dan behavior quality flags |
 
 `room_id` dan `staleness_seconds` dipisahkan dari denominator completeness telemetry agar keterbatasan sumber tidak disamarkan sebagai kehilangan field sensor.
+
+Tahap 6 menambahkan:
+
+| File | Isi |
+| --- | --- |
+| `decision_support_scenarios.csv` | Satu baris per recommendation dengan input state, forecast, delta, rule, threshold, reason, severity, dan trace konflik |
+| `decision_support_rule_summary.csv` | Definisi dan frekuensi setiap rule, coverage sample, serta basis threshold |
+| `decision_support_consistency.csv` | Alignment input, kelengkapan trace, determinisme, keunikan ID, dan contradictory recommendation check |
+
+Coverage Tahap 6 didefinisikan sebagai proporsi sample yang menghasilkan minimal satu active recommendation. Sample no-action tetap memiliki trace melalui `DS-RULE-004`.

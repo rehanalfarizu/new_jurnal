@@ -4,11 +4,15 @@ Repository ini memuat penelitian, eksperimen, evaluasi, dan artefak reproduksibi
 
 ## Status
 
-Tahap 2–4 telah diimplementasikan. Tahap 5 menambahkan evaluasi empiris Canonical Twin State tanpa mengulang forecasting atau occupancy ablation. Evaluasi memakai transformer existing untuk mengukur schema conformity, completeness, source-to-state mapping, temporal integrity, quality flags, preservasi nilai, dan determinisme.
+Tahap 2–6 telah diimplementasikan. Tahap 5 mengevaluasi Canonical Twin State tanpa mengulang forecasting atau occupancy ablation. Tahap 6 menambahkan **Decision-Support Scenario Evaluation** yang memakai output forecast occupancy-aware Tahap 4 serta state saat ini, dengan rule dan threshold yang dapat diaudit.
 
 Notebook [`notebooks/04_occupancy_ablation.ipynb`](notebooks/04_occupancy_ablation.ipynb) menyediakan antarmuka Jupyter/Google Colab. Notebook tidak menduplikasi logika eksperimen; seluruh perhitungan resmi tetap berada di `src/` dan hasil machine-readable tetap ditulis ke `results/`.
 
 Notebook [`notebooks/05_digital_twin_evaluation.ipynb`](notebooks/05_digital_twin_evaluation.ipynb) menyediakan antarmuka Tahap 5 dengan prinsip source of truth yang sama.
+
+Notebook [`notebooks/06_decision_support_analysis.ipynb`](notebooks/06_decision_support_analysis.ipynb) menyediakan antarmuka Tahap 6. Rule engine tetap berada di `src/decision_support/`; notebook tidak melatih ulang model forecasting.
+
+Rangkaian reproducibility notebook kini lengkap: [`01_dataset_exploration.ipynb`](notebooks/01_dataset_exploration.ipynb) membaca evidence eksplorasi resmi, [`02_canonical_twin_state.ipynb`](notebooks/02_canonical_twin_state.ipynb) mendemonstrasikan transformasi satu raw record, dan [`03_baseline_forecasting.ipynb`](notebooks/03_baseline_forecasting.ipynb) menyajikan protokol serta hasil baseline Tahap 3 tanpa retraining. Source of truth seluruh komputasi tetap berada di `src/`.
 
 ## Struktur repository
 
@@ -68,6 +72,16 @@ python3 -m src.twin_state.cli \
   --config configs/experiment.yaml
 ```
 
+## Menjalankan Decision-Support Scenario Evaluation Tahap 6
+
+Tahap 6 memerlukan output forecast resmi dan `data/processed/modeling_1min.csv` dari Tahap 4:
+
+```bash
+python3 -m src.decision_support.cli
+```
+
+Lokasi alternatif dapat diberikan melalui argumen `--predictions` dan `--modeling-state`. Threshold berada di `configs/decision_support.yaml` dan dilabeli sebagai threshold skenario penelitian.
+
 Notebook dapat dijalankan secara lokal atau melalui Google Colab. Atur lokasi dataset melalui environment variable agar tidak bergantung pada path komputer tertentu:
 
 ```bash
@@ -91,5 +105,6 @@ Pengujian meliputi UTC, valid/invalid canonical state, schema conformity, determ
 - Metrik test merupakan hasil baseline pada satu dataset dan satu periode observasi; belum membuktikan generalisasi lintas ruang atau musim.
 - Metrik tidak membuktikan energy saving, synchronization latency, atau efek kausal occupancy.
 - Occupancy hanya digunakan pada treatment Tahap 4 dan tidak mengubah control Tahap 3.
+- Recommendation Tahap 6 belum diuji terhadap accept/reject manusia atau measured post-recommendation outcome dan tidak membuktikan energy saving, causal impact, validated comfort optimization, maupun autonomous control.
 
 Desain rinci tersedia pada [desain eksperimen](docs/experiment_design.md). Hasil machine-readable tersedia pada [tabel](results/tables/README.md) dan [metrik](results/metrics/README.md).

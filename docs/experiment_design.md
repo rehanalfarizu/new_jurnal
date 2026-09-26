@@ -92,3 +92,29 @@ Control dan treatment memakai common timestamps, target, split, gap policy, scal
 Ketidakpastian `mae_improvement` dihitung menggunakan moving-block bootstrap pada paired absolute-error difference `absolute_error_control − absolute_error_treatment`. Kolom interval diberi nama `mae_improvement_ci_lower_w` dan `mae_improvement_ci_upper_w`. Block berisi 1.440 sample berurutan, dengan 1.000 iterasi dan seed 42. Independent-row bootstrap tidak digunakan.
 
 Hasil hanya mengukur incremental predictive value. Latest available camera snapshot tidak membuktikan sinkronisasi occupancy secara presisi dan tidak mendukung klaim kausal.
+
+## Decision-Support Scenario Evaluation Tahap 6
+
+Evaluasi Tahap 6 menggunakan seluruh output prediksi treatment occupancy-aware pada split test Tahap 4. Setiap timestamp prediksi digabungkan secara one-to-one dengan `modeling_1min.csv` untuk memperoleh current power, temperature, humidity, dan occupancy pada waktu prediksi. `forecast_delta_w` didefinisikan sebagai:
+
+```text
+forecast_delta_w = forecast_power_30m_w - current_power_w
+```
+
+Rule disimpan di `configs/decision_support.yaml`:
+
+| Rule | Kondisi | Recommendation |
+| --- | --- | --- |
+| `DS-RULE-000` | Input wajib missing atau invalid | Review input sebelum evaluasi operasional |
+| `DS-RULE-001` | Occupancy = 0 dan current atau forecast power > 40 W | Periksa beban aktif |
+| `DS-RULE-002` | Forecast delta > 2 W | Tinjau kemungkinan beban mendatang |
+| `DS-RULE-003` | Occupancy > 0 dan temperature > 32 °C atau humidity > 75% | Periksa kondisi ruang |
+| `DS-RULE-004` | Tidak ada rule signifikan terpenuhi | Lanjutkan pemantauan normal |
+
+Seluruh threshold numerik di atas adalah `declared_research_scenario_threshold`. Nilai tersebut belum mempunyai basis literatur dalam penelitian ini sehingga tidak diperlakukan sebagai standard comfort atau safety limit. Comparator menggunakan `greater_than`, bukan inklusif.
+
+Setiap recommendation menyimpan input state lengkap, rule ID, threshold/configuration, reason, severity, priority, dan deterministic recommendation ID. Konflik didefinisikan sebagai fallback no-action yang muncul bersama active recommendation pada sample yang sama. Rule tindakan lain boleh muncul bersamaan karena meminta pemeriksaan dan tidak menjalankan aktuasi yang berlawanan.
+
+Coverage adalah jumlah sample dengan minimal satu active recommendation dibagi seluruh sample yang dievaluasi. Analisis distribusi occupancy dan periode hari menggunakan timestamp UTC dengan kategori night 00:00–05:59, morning 06:00–11:59, afternoon 12:00–17:59, dan evening 18:00–23:59.
+
+Evaluasi ini tidak menggunakan accept/reject manusia atau measured post-recommendation outcome. Karena itu, hasil tidak mendukung klaim energy saving, human-in-the-loop effectiveness, causal impact, validated comfort optimization, atau autonomous control.

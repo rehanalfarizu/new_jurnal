@@ -14,6 +14,10 @@ Eksperimen ilmiah tetap dibekukan pada tag `experiment-v1.0`. Judul manuskrip di
 
 ## Recommended Reviewer Entry Point
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rehanalfarizu/new_jurnal/blob/main/notebooks/00_complete_research_workflow.ipynb)
+
+Open the notebook in Colab and select **Runtime → Run all**. No manual file upload is required in the default reviewer mode.
+
 Notebook [`notebooks/00_complete_research_workflow.ipynb`](notebooks/00_complete_research_workflow.ipynb) merupakan antarmuka konsolidasi yang direkomendasikan bagi reviewer dan pembaca untuk menelusuri keseluruhan workflow penelitian serta artefak resmi dari provenance dataset hingga evaluasi decision support.
 
 Notebook 01–06 tetap menjadi bukti reproduksibilitas granular yang dibekukan pada `experiment-v1.0`. Notebook konsolidasi ini ditambahkan setelah freeze sebagai presentation layer dan tidak mengubah scientific code, data processing, konfigurasi, model, metrik, threshold, prediksi, atau hasil ilmiah.

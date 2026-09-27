@@ -245,6 +245,14 @@ results/figures/*.svg
 !results/figures/decision_support_forecast_delta.png
 paper/figures/*.png
 paper/figures/*.svg
+!paper/figures/forecast_actual_vs_predicted_full_test.png
+!paper/figures/occupancy_aware_actual_vs_predicted_full_test.png
+!paper/figures/forecast_error_distribution_full_test.png
+!paper/figures/occupancy_ablation_comparison.png
+!paper/figures/occupancy_level_error.png
+!paper/figures/decision_support_rule_frequency.png
+!paper/figures/decision_support_occupancy_distribution.png
+!paper/figures/decision_support_forecast_delta.png
 paper/tables/*.csv
 
 # Local research configuration and credentials

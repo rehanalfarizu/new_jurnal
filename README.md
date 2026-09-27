@@ -12,6 +12,12 @@ Fakta eksperimen yang telah diverifikasi dikonsolidasikan pada [`EXPERIMENT_SUMM
 
 Eksperimen ilmiah tetap dibekukan pada tag `experiment-v1.0`. Judul manuskrip disempurnakan setelah freeze untuk menegaskan bahwa target prediksi adalah `power(t+30 min)` dalam W. Perubahan ini hanya menyelaraskan dokumentasi dan terminologi; tidak ada scientific code, pemrosesan data, konfigurasi, model, metrik, threshold, atau hasil yang berubah.
 
+## Recommended Reviewer Entry Point
+
+Notebook [`notebooks/00_complete_research_workflow.ipynb`](notebooks/00_complete_research_workflow.ipynb) merupakan antarmuka konsolidasi yang direkomendasikan bagi reviewer dan pembaca untuk menelusuri keseluruhan workflow penelitian serta artefak resmi dari provenance dataset hingga evaluasi decision support.
+
+Notebook 01–06 tetap menjadi bukti reproduksibilitas granular yang dibekukan pada `experiment-v1.0`. Notebook konsolidasi ini ditambahkan setelah freeze sebagai presentation layer dan tidak mengubah scientific code, data processing, konfigurasi, model, metrik, threshold, prediksi, atau hasil ilmiah.
+
 Notebook [`notebooks/04_occupancy_ablation.ipynb`](notebooks/04_occupancy_ablation.ipynb) menyediakan antarmuka Jupyter/Google Colab. Notebook tidak menduplikasi logika eksperimen; seluruh perhitungan resmi tetap berada di `src/` dan hasil machine-readable tetap ditulis ke `results/`.
 
 Notebook [`notebooks/05_digital_twin_evaluation.ipynb`](notebooks/05_digital_twin_evaluation.ipynb) menyediakan antarmuka Tahap 5 dengan prinsip source of truth yang sama.

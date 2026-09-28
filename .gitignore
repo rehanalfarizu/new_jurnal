@@ -253,6 +253,8 @@ paper/figures/*.svg
 !paper/figures/decision_support_rule_frequency.png
 !paper/figures/decision_support_occupancy_distribution.png
 !paper/figures/decision_support_forecast_delta.png
+!paper/figures/forecasting_performance.png
+!paper/figures/download.png
 paper/tables/*.csv
 
 # Local research configuration and credentials

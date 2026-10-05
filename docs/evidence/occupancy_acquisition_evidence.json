@@ -1,0 +1,56 @@
+{
+  "evidence_version": "1.0",
+  "inspection_date": "2026-10-05",
+  "dataset_deployment_link_verified": false,
+  "inspected_implementation": {
+    "repository": "https://github.com/rehanalfarizu/jurnal_penelitian",
+    "commit": "e9d46cf355ed444a75b594590f0d0f955ba11db6",
+    "file": "Digital_Twin/dashboard_digitaltwin/sensor_iot/raspberry_pi/people_counter_yolo.py",
+    "sha256": "b4174380ce90340986d2b109e71c9e0e50d431f4dcba7a0988a7e2a3cfb0dd53",
+    "working_copy_matches_commit": true,
+    "deployment_at_dataset_collection_verified": false
+  },
+  "items": [
+    {
+      "item": "Acquisition source and alternatives",
+      "documented_detail": "The research provenance describes Raspberry Pi camera-derived jumlahOrang/people_count. The earlier system audit records YOLOv3-tiny and YOLOv8 variants; the CSV does not identify which variant generated the evaluated data.",
+      "evidence_status": "Documented provenance; exact deployed variant unresolved",
+      "source": "docs/data_provenance.md: Hubungan field sumber; docs/repository_audit.md: Sensing and edge acquisition"
+    },
+    {
+      "item": "Counting mechanism in the inspected variant",
+      "documented_detail": "YOLOv3-tiny person-class detections are filtered by class score > 0.40, minimum box height 100 px and aspect ratio 0.5-4.0, then non-maximum suppression (threshold 0.4) is applied. The count is the number of retained person boxes, not a cumulative entrance/exit counter. If this count is zero, the code uses Haar-cascade face counting; cached face boxes may be retained for up to the configured 0.5 s timeout.",
+      "evidence_status": "Verified in inspected source only; dataset deployment unverified",
+      "source": "people_counter_yolo.py: CONFIDENCE_THRESHOLD, NMS_THRESHOLD, MIN_PERSON_HEIGHT, detect_people_yolo, detect_faces, detect_combined"
+    },
+    {
+      "item": "Camera processing cadence",
+      "documented_detail": "The capture loop runs detection for each successfully read frame. TARGET_FPS=60 is a camera setting request, not measured detection throughput. No fixed realized detection interval for the evaluated dataset is documented.",
+      "evidence_status": "Implementation behavior verified; realized dataset cadence unavailable",
+      "source": "people_counter_yolo.py: TARGET_FPS, camera initialization, capture_frames"
+    },
+    {
+      "item": "Nominal publication cadence in the inspected variant",
+      "documented_detail": "PUBLISH_INTERVAL=5 s; publication is attempted when elapsed time is >5 s inside the capture loop. Processing, scheduling and transmission may delay delivery. This is not a measured camera refresh, gateway-merge or CSV-export interval, and is not verified as the configuration used during data collection.",
+      "evidence_status": "Configured publication rule verified; realized cadence unavailable",
+      "source": "people_counter_yolo.py: PUBLISH_INTERVAL, capture_frames, publish_people_count"
+    },
+    {
+      "item": "Gateway occupancy semantics",
+      "documented_detail": "The research provenance documents a gateway path that merges the latest available sensor state and camera snapshot. The raw export has one combined timestamp and no independent camera-capture timestamp. Exact alignment, occupancy age and camera update cadence cannot be recovered from the CSV.",
+      "evidence_status": "Documented snapshot semantics; timing not independently measurable",
+      "source": "docs/data_provenance.md: Perilaku penggabungan occupancy; results/tables/column_schema.csv"
+    },
+    {
+      "item": "Counting uncertainty and accuracy",
+      "documented_detail": "The supplied research evidence contains no manually annotated ground-truth counts, per-record detector scores or validated counting-error distribution for this observation period. Counting accuracy and uncertainty are therefore not quantified. The detector's class-score threshold is not an occupancy-accuracy percentage or confidence interval.",
+      "evidence_status": "Unavailable / not evaluated",
+      "source": "Raw export schema; docs/limitations.md; no ground-truth acquisition validation artifact supplied"
+    }
+  ],
+  "additional_evidence_needed": [
+    "Deployment commit, model weights and detector configuration linked to the collection dates and CSV export.",
+    "Timestamped camera-update, publication and gateway-merge logs to measure realized cadence and snapshot age.",
+    "Time-aligned manually annotated counts covering occupied and unoccupied periods, with a defined counting-error evaluation protocol."
+  ]
+}

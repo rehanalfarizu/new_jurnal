@@ -20,6 +20,8 @@ Open the notebook in Colab and select **Runtime → Run all**. No manual file up
 
 Notebook [`notebooks/00_complete_research_workflow.ipynb`](notebooks/00_complete_research_workflow.ipynb) merupakan antarmuka konsolidasi yang direkomendasikan bagi reviewer dan pembaca untuk menelusuri keseluruhan workflow penelitian serta artefak resmi dari provenance dataset hingga evaluasi decision support.
 
+Notebook tersebut juga menampilkan delapan record asli sebagai contoh schema (bagian 3.1), status bukti akuisisi occupancy (3.2), fungsi agregasi per variabel (5.1), serta definisi persis 11 occupancy-derived features (10.1). Excerpt kecil dan manifest verifikasinya berada di `docs/evidence/`, sehingga mode reviewer tidak memerlukan upload seluruh dataset. Bukti implementasi kamera dibedakan dari deployment saat pengumpulan data: versi detector yang digunakan, cadence aktual, dan counting uncertainty belum terverifikasi.
+
 Notebook 01–06 tetap menjadi bukti reproduksibilitas granular yang dibekukan pada `experiment-v1.0`. Notebook konsolidasi ini ditambahkan setelah freeze sebagai presentation layer dan tidak mengubah scientific code, data processing, konfigurasi, model, metrik, threshold, prediksi, atau hasil ilmiah.
 
 Notebook [`notebooks/04_occupancy_ablation.ipynb`](notebooks/04_occupancy_ablation.ipynb) menyediakan antarmuka Jupyter/Google Colab. Notebook tidak menduplikasi logika eksperimen; seluruh perhitungan resmi tetap berada di `src/` dan hasil machine-readable tetap ditulis ke `results/`.

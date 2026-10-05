@@ -1,6 +1,6 @@
 # Pengujian
 
-Empat puluh unit test saat ini memverifikasi:
+Empat puluh unit test eksperimen memverifikasi:
 
 - lokalisasi timestamp naive sebagai UTC tanpa pergeseran;
 - canonical twin state dan missing-versus-zero;
@@ -34,4 +34,6 @@ Empat puluh unit test saat ini memverifikasi:
 - no-action dapat dihasilkan dan konflik no-action versus active recommendation dapat dideteksi; serta
 - input decision-support identik menghasilkan output identik.
 
-Jalankan dengan `python3 -m unittest discover -s tests -v`.
+Tiga regression test reviewer tambahan memeriksa checksum/schema excerpt delapan raw record dan hubungannya dengan manifest frozen; kesesuaian definisi 11 occupancy features antara artifact, source dan konfigurasi; serta pemisahan bukti implementasi kamera dari deployment dan counting accuracy yang belum terverifikasi. Pemeriksaan excerpt tanpa dataset penuh bukan verifikasi ulang independen bahwa record tersebut berasal dari file penuh.
+
+Jalankan seluruh 43 test dengan `python3 -m unittest discover -s tests -v`.

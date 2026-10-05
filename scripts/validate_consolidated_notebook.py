@@ -1,4 +1,4 @@
-"""Execute the consolidated notebook in read-only reviewer mode.
+"""Validate a clean publication artifact, then execute it in reviewer mode.
 
 This validation intentionally supplies a nonexistent raw-dataset path. Scientific
 source, configs, frozen notebooks, and results are hashed before and after the
@@ -16,6 +16,8 @@ import tempfile
 import nbformat
 from nbclient import NotebookClient
 
+from notebook_quality import publication_hygiene_checks
+
 
 ROOT = Path(__file__).resolve().parents[1]
 NOTEBOOK = ROOT / "notebooks/00_complete_research_workflow.ipynb"
@@ -23,6 +25,7 @@ PROTECTED_PATHS = (
     "configs",
     "results",
     "src",
+    "scripts/notebook_quality.py",
     "notebooks/01_dataset_exploration.ipynb",
     "notebooks/02_canonical_twin_state.ipynb",
     "notebooks/03_baseline_forecasting.ipynb",
@@ -71,6 +74,15 @@ def main() -> None:
         try:
             notebook = nbformat.read(NOTEBOOK, as_version=4)
             nbformat.validate(notebook)
+            hygiene = publication_hygiene_checks(notebook)
+            failures = [label for label, passed in hygiene.items() if not passed]
+            if failures:
+                raise AssertionError(
+                    "Publication copy must be clean before validation: "
+                    + "; ".join(failures)
+                    + ". Saved outputs are allowed in a local working notebook, "
+                    "but clear them in the copy prepared for Git."
+                )
             kernel_name = os.environ.get("NOTEBOOK_KERNEL_NAME", "python3")
             client = NotebookClient(
                 notebook,

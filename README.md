@@ -22,6 +22,8 @@ Notebook [`notebooks/00_complete_research_workflow.ipynb`](notebooks/00_complete
 
 Notebook tersebut juga menampilkan delapan record asli sebagai contoh schema (bagian 3.1), status bukti akuisisi occupancy (3.2), fungsi agregasi per variabel (5.1), serta definisi persis 11 occupancy-derived features (10.1). Excerpt kecil dan manifest verifikasinya berada di `docs/evidence/`, sehingga mode reviewer tidak memerlukan upload seluruh dataset. Bukti implementasi kamera dibedakan dari deployment saat pengumpulan data: versi detector yang digunakan, cadence aktual, dan counting uncertainty belum terverifikasi.
 
+Pemeriksaan engineering membedakan eksekusi lokal dari publikasi: output dan execution counts boleh tersimpan selama penggunaan, tanpa memicu kegagalan runtime. Copy yang di-commit tetap wajib tanpa output, execution counts, path mesin lokal, atau assignment kredensial; aturan ini diperiksa terpisah oleh validator publikasi dan CI.
+
 Notebook 01–06 tetap menjadi bukti reproduksibilitas granular yang dibekukan pada `experiment-v1.0`. Notebook konsolidasi ini ditambahkan setelah freeze sebagai presentation layer dan tidak mengubah scientific code, data processing, konfigurasi, model, metrik, threshold, prediksi, atau hasil ilmiah.
 
 Notebook [`notebooks/04_occupancy_ablation.ipynb`](notebooks/04_occupancy_ablation.ipynb) menyediakan antarmuka Jupyter/Google Colab. Notebook tidak menduplikasi logika eksperimen; seluruh perhitungan resmi tetap berada di `src/` dan hasil machine-readable tetap ditulis ke `results/`.

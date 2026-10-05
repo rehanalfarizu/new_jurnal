@@ -36,4 +36,6 @@ Empat puluh unit test eksperimen memverifikasi:
 
 Tiga regression test reviewer tambahan memeriksa checksum/schema excerpt delapan raw record dan hubungannya dengan manifest frozen; kesesuaian definisi 11 occupancy features antara artifact, source dan konfigurasi; serta pemisahan bukti implementasi kamera dari deployment dan counting accuracy yang belum terverifikasi. Pemeriksaan excerpt tanpa dataset penuh bukan verifikasi ulang independen bahwa record tersebut berasal dari file penuh.
 
-Jalankan seluruh 43 test dengan `python3 -m unittest discover -s tests -v`.
+Delapan regression test engineering memisahkan validasi source/runtime dari hygiene publikasi. Output dan nomor eksekusi yang tersimpan diperbolehkan saat menjalankan notebook, tetapi copy yang dipublikasikan tetap wajib bersih. Path hard-coded, assignment kredensial, ID cell invalid, dan pelanggaran mode read-only tetap ditolak.
+
+Jalankan seluruh 51 test dengan `python3 -m unittest discover -s tests -v`.

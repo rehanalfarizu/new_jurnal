@@ -1,0 +1,9 @@
+{
+  "generated_at_utc": "2026-11-11T12:50:02.064646+00:00",
+  "command": "python scripts/verify_reproduction.py",
+  "tolerance": 1e-09,
+  "max_abs_diff": 1.734723475976807e-18,
+  "pass": true,
+  "test_sample_count": 18126,
+  "comparisons_count": 16
+}

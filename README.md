@@ -128,3 +128,27 @@ Pengujian meliputi UTC, valid/invalid canonical state, schema conformity, determ
 - Recommendation Tahap 6 belum diuji terhadap accept/reject manusia atau measured post-recommendation outcome dan tidak membuktikan energy saving, causal impact, validated comfort optimization, maupun autonomous control.
 
 Desain rinci tersedia pada [desain eksperimen](docs/experiment_design.md). Hasil machine-readable tersedia pada [tabel](results/tables/README.md) dan [metrik](results/metrics/README.md).
+
+## Verification
+
+Additional scripts for independent verification of manuscript claims:
+
+### Reproducibility check
+
+Verifies that metrics reproduce within tolerance from frozen prediction files without retraining:
+
+```bash
+python scripts/verify_reproduction.py
+```
+
+Output: `results/tables/reproduction_check.csv`, `results/metrics/reproduction_check.json`
+
+### Hourly profile
+
+Computes per-UTC-hour statistics for power and occupancy:
+
+```bash
+python scripts/build_hourly_profile.py
+```
+
+Output: `results/tables/hourly_profile.csv`, `results/tables/hourly_profile_summary.csv`

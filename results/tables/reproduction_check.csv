@@ -1,0 +1,17 @@
+model,metric,stored_value,recomputed_value,abs_diff,source
+persistence,mae,1.1759198533484814,1.1759198533484814,0.0,forecast_metrics.csv
+persistence,rmse,1.729499839998615,1.729499839998615,0.0,forecast_metrics.csv
+persistence,r2,0.5982790418728454,0.5982790418728454,0.0,forecast_metrics.csv
+historical_power_ridge,mae,1.123551294127783,1.123551294127783,0.0,forecast_metrics.csv
+historical_power_ridge,rmse,1.6493779635376211,1.6493779635376211,0.0,forecast_metrics.csv
+historical_power_ridge,r2,0.6346376320870958,0.6346376320870958,0.0,forecast_metrics.csv
+non_occupancy_multivariate_ridge,mae,1.0800989673662498,1.0800989673662498,0.0,forecast_metrics.csv
+non_occupancy_multivariate_ridge,rmse,1.6208652205943326,1.6208652205943326,0.0,forecast_metrics.csv
+non_occupancy_multivariate_ridge,r2,0.6471604620985363,0.6471604620985363,0.0,forecast_metrics.csv
+non_occupancy_multivariate_ridge (control),mae,1.0800989673662498,1.0800989673662498,0.0,occupancy_ablation_metrics.csv
+non_occupancy_multivariate_ridge (control),rmse,1.6208652205943326,1.6208652205943326,0.0,occupancy_ablation_metrics.csv
+non_occupancy_multivariate_ridge (control),r2,0.6471604620985363,0.6471604620985363,0.0,occupancy_ablation_metrics.csv
+occupancy_multivariate_ridge (treatment),mae,1.0693887584729078,1.0693887584729078,0.0,occupancy_ablation_metrics.csv
+occupancy_multivariate_ridge (treatment),rmse,1.600945021043651,1.600945021043651,0.0,occupancy_ablation_metrics.csv
+occupancy_multivariate_ridge (treatment),r2,0.6557798629802756,0.6557798629802756,0.0,occupancy_ablation_metrics.csv
+mae_improvement,control_minus_treatment,0.010710208893341957,0.010710208893341955,1.734723475976807e-18,occupancy_ablation_bootstrap.csv

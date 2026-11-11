@@ -1,0 +1,12 @@
+metric,value,unit
+total_records,2027520,records
+overall_power_mean,36.932671332465276,W
+overall_occupancy_mean,3.0849500868055557,persons
+hourly_power_mean_min,36.69580125771238,W
+hourly_power_mean_max,37.11820674630895,W
+hourly_power_range,0.4224054885965671,W
+hourly_power_range_pct,1.143717671527475,%
+hourly_occupancy_mean_min,3.020616606771326,persons
+hourly_occupancy_mean_max,3.151374572480148,persons
+hourly_occupancy_range,0.1307579657088218,persons
+hourly_occupancy_range_pct,4.23857637982794,%

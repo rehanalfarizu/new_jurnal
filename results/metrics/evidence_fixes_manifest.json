@@ -1,0 +1,14 @@
+{
+  "generated_at_utc": "2026-11-11T12:14:02.773741+00:00",
+  "branch": "evidence-fixes",
+  "purpose": "Additional verification evidence for reviewer response",
+  "file_checksums": {
+    "scripts/verify_reproduction.py": "9ed9da34ae6de73bd9f6108a0ed7937fa920de33d1214fc6ef816f250bfe7c13",
+    "scripts/build_hourly_profile.py": "9ac6eba5b8fab70bdabda1da64686a8d0cbf57bcbee7866eee4af75abfd79e66",
+    "tests/test_reproduction.py": "2ae2e7e73cc305f3c3316d9f5a255c6dccf2f8193e50d2ada0925286914f93a7",
+    "results/tables/reproduction_check.csv": "ea790e55158442a2b930153dd83d8316d571c33de1ca88fc1c5fe59a2ca8dd5e",
+    "results/metrics/reproduction_check.json": "06de0dd6a6370633512c13980a9d7c12d1cedf5040aef93828712acf2045aff7",
+    "results/tables/hourly_profile.csv": "865cba08c415796d3fc1ff866dd858d25accb54f5d184524d92d3bb49ed9bc04",
+    "results/tables/hourly_profile_summary.csv": "84417d363d8736b217ff6ff7240200c89213dd5df874723c4dfbc1f2cc9b8198"
+  }
+}
